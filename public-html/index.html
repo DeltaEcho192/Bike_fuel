@@ -1,20 +1,11 @@
 <html>
   <head>
     <title>
-      Hello World
+      Hello World My name is anthony.
     </title>
   </head>
   <body>
-    Hello World
+    <div id=output>NO DATA</div>
   </body>
-  <script>
-    const Http = new XMLHttpRequest();
-    const url='https://maps.googleapis.com/maps/api/directions/json?origin=Disneyland&destination=Universal+Studios+Hollywood&key=AIzaSyAIf-vJKm6y4vhqsCFdMkuRYIOjb8Q8rxM';
-    Http.open("GET", url);
-    Http.send();
-
-    Http.onreadystatechange = (e) => {
-      console.log(Http.responseText)
-    }
-  </script>
+  <script src=directions.js></script>
 </html>

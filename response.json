@@ -1,0 +1,230 @@
+{
+    "geocoded_waypoints" : [
+       {
+          "geocoder_status" : "OK",
+          "place_id" : "EjgyIEZhdXJlIFN0LCBLcm9tcml2aWVyLCBTdGVsbGVuYm9zY2gsIDc2MDAsIFNvdXRoIEFmcmljYSIaEhgKFAoSCXMZs0hiss0dEaQCiLNFXnaJEAI",
+          "types" : [ "street_address" ]
+       },
+       {
+          "geocoder_status" : "OK",
+          "place_id" : "ChIJU5UmeGmyzR0RJV86I3wj55s",
+          "types" : [ "premise" ]
+       }
+    ],
+    "routes" : [
+       {
+          "bounds" : {
+             "northeast" : {
+                "lat" : -33.9262705,
+                "lng" : 18.8720522
+             },
+             "southwest" : {
+                "lat" : -33.9302358,
+                "lng" : 18.857062
+             }
+          },
+          "copyrights" : "Map data ©2020 AfriGIS (Pty) Ltd",
+          "legs" : [
+             {
+                "distance" : {
+                   "text" : "2.1 km",
+                   "value" : 2078
+                },
+                "duration" : {
+                   "text" : "5 mins",
+                   "value" : 297
+                },
+                "end_address" : "8 Groeneweide Rd, Universiteits Oord, Stellenbosch, 7600, South Africa",
+                "end_location" : {
+                   "lat" : -33.9286231,
+                   "lng" : 18.8720522
+                },
+                "start_address" : "2 Faure St, Kromrivier, Stellenbosch, 7600, South Africa",
+                "start_location" : {
+                   "lat" : -33.9263345,
+                   "lng" : 18.8578447
+                },
+                "steps" : [
+                   {
+                      "distance" : {
+                         "text" : "0.1 km",
+                         "value" : 118
+                      },
+                      "duration" : {
+                         "text" : "1 min",
+                         "value" : 19
+                      },
+                      "end_location" : {
+                         "lat" : -33.9271721,
+                         "lng" : 18.857062
+                      },
+                      "html_instructions" : "Head \u003cb\u003esouthwest\u003c/b\u003e on \u003cb\u003eFaure St\u003c/b\u003e toward \u003cb\u003eKromrivier Rd\u003c/b\u003e",
+                      "polyline" : {
+                         "points" : "pfanEodbrBt@p@pBhB"
+                      },
+                      "start_location" : {
+                         "lat" : -33.9263345,
+                         "lng" : 18.8578447
+                      },
+                      "travel_mode" : "DRIVING"
+                   },
+                   {
+                      "distance" : {
+                         "text" : "0.4 km",
+                         "value" : 357
+                      },
+                      "duration" : {
+                         "text" : "1 min",
+                         "value" : 46
+                      },
+                      "end_location" : {
+                         "lat" : -33.9262705,
+                         "lng" : 18.8607795
+                      },
+                      "html_instructions" : "Sharp \u003cb\u003eleft\u003c/b\u003e onto \u003cb\u003eKromrivier Rd\u003c/b\u003e",
+                      "maneuver" : "turn-sharp-left",
+                      "polyline" : {
+                         "points" : "xkanEs_brB_@{BYaBa@uCwAsJ"
+                      },
+                      "start_location" : {
+                         "lat" : -33.9271721,
+                         "lng" : 18.857062
+                      },
+                      "travel_mode" : "DRIVING"
+                   },
+                   {
+                      "distance" : {
+                         "text" : "0.2 km",
+                         "value" : 201
+                      },
+                      "duration" : {
+                         "text" : "1 min",
+                         "value" : 32
+                      },
+                      "end_location" : {
+                         "lat" : -33.9279636,
+                         "lng" : 18.8615276
+                      },
+                      "html_instructions" : "Turn \u003cb\u003eright\u003c/b\u003e onto \u003cb\u003eRyneveld St\u003c/b\u003e",
+                      "maneuver" : "turn-right",
+                      "polyline" : {
+                         "points" : "dfanE{vbrBrDeAbA[z@W\\["
+                      },
+                      "start_location" : {
+                         "lat" : -33.9262705,
+                         "lng" : 18.8607795
+                      },
+                      "travel_mode" : "DRIVING"
+                   },
+                   {
+                      "distance" : {
+                         "text" : "0.2 km",
+                         "value" : 235
+                      },
+                      "duration" : {
+                         "text" : "1 min",
+                         "value" : 23
+                      },
+                      "end_location" : {
+                         "lat" : -33.9270985,
+                         "lng" : 18.8637726
+                      },
+                      "html_instructions" : "At the roundabout, take the \u003cb\u003e1st\u003c/b\u003e exit onto \u003cb\u003eJan Celliers Rd\u003c/b\u003e",
+                      "maneuver" : "roundabout-left",
+                      "polyline" : {
+                         "points" : "vpanEq{brB@A?A?A?A@??AD{@I]Sk@[u@_@w@Sg@gAyC"
+                      },
+                      "start_location" : {
+                         "lat" : -33.9279636,
+                         "lng" : 18.8615276
+                      },
+                      "travel_mode" : "DRIVING"
+                   },
+                   {
+                      "distance" : {
+                         "text" : "0.4 km",
+                         "value" : 356
+                      },
+                      "duration" : {
+                         "text" : "1 min",
+                         "value" : 45
+                      },
+                      "end_location" : {
+                         "lat" : -33.9302358,
+                         "lng" : 18.864461
+                      },
+                      "html_instructions" : "Turn \u003cb\u003eright\u003c/b\u003e onto \u003cb\u003eJoubert Rd\u003c/b\u003e",
+                      "maneuver" : "turn-right",
+                      "polyline" : {
+                         "points" : "jkanEqicrBhBm@XGLAbCSvAMVClFk@"
+                      },
+                      "start_location" : {
+                         "lat" : -33.9270985,
+                         "lng" : 18.8637726
+                      },
+                      "travel_mode" : "DRIVING"
+                   },
+                   {
+                      "distance" : {
+                         "text" : "0.7 km",
+                         "value" : 738
+                      },
+                      "duration" : {
+                         "text" : "2 mins",
+                         "value" : 103
+                      },
+                      "end_location" : {
+                         "lat" : -33.9279734,
+                         "lng" : 18.871948
+                      },
+                      "html_instructions" : "Turn \u003cb\u003eleft\u003c/b\u003e onto \u003cb\u003eBanghoek Rd\u003c/b\u003e",
+                      "maneuver" : "turn-left",
+                      "polyline" : {
+                         "points" : "~~anE{mcrB]iDSkAOs@M[I_@_@gBm@aCyBcJAMAOAOAOAIMw@Uo@O]Oa@uAuH"
+                      },
+                      "start_location" : {
+                         "lat" : -33.9302358,
+                         "lng" : 18.864461
+                      },
+                      "travel_mode" : "DRIVING"
+                   },
+                   {
+                      "distance" : {
+                         "text" : "73 m",
+                         "value" : 73
+                      },
+                      "duration" : {
+                         "text" : "1 min",
+                         "value" : 29
+                      },
+                      "end_location" : {
+                         "lat" : -33.9286231,
+                         "lng" : 18.8720522
+                      },
+                      "html_instructions" : "Turn \u003cb\u003eright\u003c/b\u003e onto \u003cb\u003eGroeneweide Rd\u003c/b\u003e\u003cdiv style=\"font-size:0.9em\"\u003eDestination will be on the left\u003c/div\u003e",
+                      "maneuver" : "turn-right",
+                      "polyline" : {
+                         "points" : "xpanEu|drBzAOd@C"
+                      },
+                      "start_location" : {
+                         "lat" : -33.9279734,
+                         "lng" : 18.871948
+                      },
+                      "travel_mode" : "DRIVING"
+                   }
+                ],
+                "traffic_speed_entry" : [],
+                "via_waypoint" : []
+             }
+          ],
+          "overview_polyline" : {
+             "points" : "pfanEodbrBfDzCy@}EyBiOvFaBz@W\\[@A@ED}@]iA{@mB{AaEbCu@pCUnBQlFk@]iDc@_CW{@iE{QGy@Mw@Uo@_@_AuAuHzAOd@C"
+          },
+          "summary" : "Banghoek Rd",
+          "warnings" : [],
+          "waypoint_order" : []
+       }
+    ],
+    "status" : "OK"
+ }
+ 
