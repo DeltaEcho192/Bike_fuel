@@ -4,8 +4,13 @@
       Bike Fuel Calculator
     </title>
     <link rel="stylesheet" href="style.css">
+
   </head>
   <body>
+    <button onclick=apiCall()>Calculate</button>
+
+    <div id="infoTbl">
+
     <table>
       <tr>
         <th>Bike</th>
@@ -13,25 +18,31 @@
       </tr>
       <tr>
         <th>Start</th>
-        <th>2 Faure Street</th>
+        <th id="startAdTbl"></th>
       </tr>
       <tr>
         <th>End</th>
-        <th>8 Groeneweide</th>
+        <th id="endAdTbl"></th>
       </tr>
       <tr>
         <th>Distance</th>
-        <th>2.1km</th>
+        <th id="distTbl"></th>
       </tr>
       <tr>
         <th>Litres</th>
-        <th>0.12</th>
+        <th id="lTbl"></th>
+      </tr>
+      <tr>
+        <th>Cost</th>
+        <th id="costTbl"></th>
       </tr>
       <tr>
         <th>Stops</th>
-        <th>0</th>
+        <th id="stopsTbl"></th>
       </tr>
     </table>
+  </div>
+
   </body>
   <script src=directions.js></script>
 </html>
