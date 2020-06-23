@@ -9,4 +9,30 @@ table {
     text-align: left;
     padding: 8px;
   }
+  input, label {
+    margin: 5px 5px;
+  }
+  
+  .form-group {
+    margin: 30px auto;
+    width: 450px;
+    height: 150px;
+  }
+  
+  .form-control {
+    float: left;
+  }
+  
+  #inputStreet {
+    width: 100%;
+  }
+  
+  #inputCity {
+    width: 50%;
+  }
+  
+  #inputZip {
+    width: 50%;
+  }
+
   

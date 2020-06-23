@@ -1,5 +1,7 @@
 function apiCall(){
-    const url='https://maps.googleapis.com/maps/api/directions/json?origin=2+Faure+St,+Kromrivier,+Stellenbosch,+7600&destination=8+Groeneweide+Rd,+Universiteits+Oord,+Stellenbosch,+7600&key=AIzaSyAIf-vJKm6y4vhqsCFdMkuRYIOjb8Q8rxM';
+     
+    var url=adrMaker();
+    console.log(url)
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function() {
     if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
@@ -16,8 +18,28 @@ function apiCall(){
     }
     xmlHttp.open("GET", url, true);
     xmlHttp.send();
+    
 }
 
+function adrMaker()
+{
+    var startAdr = document.getElementById("startAdr").value
+    var startCity = document.getElementById("startCity").value
+    var startZip = document.getElementById("startZip").value
+    var endAdr = document.getElementById("endAdr").value
+    var endCity = document.getElementById("endCity").value
+    var endZip = document.getElementById("endZip").value
+
+    var fnlStartAdr = startAdr + ", "+startCity+", " + startZip
+    var fnlEndAdr = endAdr + ", " + endCity + ", " + endZip
+    var startArr = fnlStartAdr.split(" ")
+    var endArr = fnlEndAdr.split(" ")
+    fnlStartAdr = startArr.join("+")
+    fnlEndAdr = endArr.join("+")
+    var url='https://maps.googleapis.com/maps/api/directions/json?origin=' + fnlStartAdr +"&destination="+fnlEndAdr+'&key=AIzaSyAIf-vJKm6y4vhqsCFdMkuRYIOjb8Q8rxM';
+    return url
+
+}
 
 function calculations(distance,time)
 {

@@ -7,8 +7,49 @@
 
   </head>
   <body>
-    <button onclick=apiCall()>Calculate</button>
+    <div class="form-group">
+      Start Address
+      <br>
+      <input type="street" 
+             class="form-control" 
+             id="startAdr" 
+             placeholder="Start Street">
+      
+      <input type="city" 
+             class="form-control" 
+             id="startCity" 
+             placeholder="City">
+      <br>
+      <input type="zip" 
+             class="form-control" 
+             id="startZip" 
+             placeholder="Zip">
+      <br>
+      <br>
+      <br>
+      End Address
+      <br>
+      <input type="street" 
+             class="form-control" 
+             id="endAdr" 
+             placeholder="Start Street">
+      
+      <input type="city" 
+             class="form-control" 
+             id="endCity" 
+             placeholder="City">
+      
+      <input type="zip" 
+             class="form-control" 
+             id="endZip" 
+             placeholder="Zip">
 
+    </div>
+    <br>
+    <br>
+    <button onclick=apiCall()>Calculate</button>
+    <br>
+    <br>
     <div id="infoTbl">
 
     <table>
