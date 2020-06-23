@@ -11,12 +11,15 @@ table {
   }
   input, label {
     margin: 5px 5px;
+    border: 1px solid #dddddd;
+
   }
   
   .form-group {
     margin: 30px auto;
-    width: 450px;
-    height: 150px;
+    height: 200px;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
   }
   
   .form-control {
@@ -25,6 +28,9 @@ table {
   
   #inputStreet {
     width: 100%;
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
   }
   
   #inputCity {
@@ -34,5 +40,16 @@ table {
   #inputZip {
     width: 50%;
   }
+  button {
+    background-color: black;
+    color: white;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 17px;
+  }
+  
 
   

@@ -9,9 +9,6 @@ function apiCall(){
         var distance = apireturn.routes[0].legs[0].distance.value
         var distDisplay = apireturn.routes[0].legs[0].distance.text
         var time = apireturn.routes[0].legs[0].duration.text
-        console.log(distance)
-        console.log(distDisplay)
-        console.log(time)
         document.getElementById("distTbl").innerHTML = distDisplay
         calculations(distance,time)
         stopCheck(distance)
@@ -32,11 +29,15 @@ function adrMaker()
 
     var fnlStartAdr = startAdr + ", "+startCity+", " + startZip
     var fnlEndAdr = endAdr + ", " + endCity + ", " + endZip
+    document.getElementById("startAdTbl").innerHTML = fnlStartAdr
+    document.getElementById("endAdTbl").innerHTML = fnlEndAdr
     var startArr = fnlStartAdr.split(" ")
     var endArr = fnlEndAdr.split(" ")
     fnlStartAdr = startArr.join("+")
     fnlEndAdr = endArr.join("+")
     var url='https://maps.googleapis.com/maps/api/directions/json?origin=' + fnlStartAdr +"&destination="+fnlEndAdr+'&key=AIzaSyAIf-vJKm6y4vhqsCFdMkuRYIOjb8Q8rxM';
+
+     
     return url
 
 }
