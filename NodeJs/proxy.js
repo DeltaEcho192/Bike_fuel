@@ -22,5 +22,16 @@ app.get('/direc/:start/:end',(req,res) => {
       )
 })
 
+app.get('/bike/:type',(req,res) => {
+    fs.readFile('info.json', (err, data) => {
+      if (err) throw err;
+      var typeS = req.params.type
+      console.log(typeS)
+      let bikes = JSON.parse(data);
+      console.log(bikes[typeS]);
+      res.json(bikes[typeS])
+  });
+  })
+
 const PORT = process.env.PORT || 9000;
 app.listen(PORT, () => console.log(`listening on ${PORT}`));

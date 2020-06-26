@@ -44,17 +44,28 @@ function adrMaker()
 
 function calculations(distance,time)
 {
-    var fuelEff = 0.00006
-    var fuelPrice = 13.20
+    url = "http://localhost:9000/bike/gs_800"
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() {
+    if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+        var apireturn = JSON.parse(xmlHttp.responseText);
+        console.log(apireturn[0].fuel_eff)
+        console.log(apireturn[0].tank)
+
+        var fuelEff = apireturn[0].fuel_eff
+        var fuelPrice = 13.20
+        var fuelUsage = fuelEff * distance
+        var fuelUsage = Math.round(fuelUsage * 100) / 100
+        document.getElementById("lTbl").innerHTML = fuelUsage + " L"
+        console.log(fuelUsage) 
+        var fnlCost = fuelUsage * fuelPrice
+        var fnlCost = Math.round(fnlCost * 100) / 100
+        document.getElementById("costTbl").innerHTML = "R " + fnlCost
+        console.log(fnlCost)
+    }
+    xmlHttp.open("GET", url, true);
+    xmlHttp.send();
     
-    var fuelUsage = fuelEff * distance
-    var fuelUsage = Math.round(fuelUsage * 100) / 100
-    document.getElementById("lTbl").innerHTML = fuelUsage + " L"
-    console.log(fuelUsage) 
-    var fnlCost = fuelUsage * fuelPrice
-    var fnlCost = Math.round(fnlCost * 100) / 100
-    document.getElementById("costTbl").innerHTML = "R " + fnlCost
-    console.log(fnlCost)
 }
 
 function stopCheck(distance)

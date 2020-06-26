@@ -1,5 +1,6 @@
 const express = require('express');
 const request = require('request');
+const fs = require('fs');
 
 const app = express();
 
@@ -20,6 +21,17 @@ app.get('/direc/:start/:end',(req,res) => {
           res.json(JSON.parse(body));
         }
       )
+})
+
+app.get('/bike/:type',(req,res) => {
+  fs.readFile('infoTest.json', (err, data) => {
+    if (err) throw err;
+    var typeS = req.params.type
+    console.log(typeS)
+    let bikes = JSON.parse(data);
+    console.log(bikes[typeS]);
+    res.json(bikes[typeS])
+});
 })
 
 const PORT = process.env.PORT || 9000;
