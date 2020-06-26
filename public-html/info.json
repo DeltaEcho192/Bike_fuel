@@ -1,0 +1,18 @@
+{
+    
+    "Triumph Speedmaster": [
+        {
+            "fuel_eff" : 0.00006,
+            "tank" : 16.4
+        }
+    
+    ],
+
+    "BMW GS 1200": [
+        {
+            "fuel_eff" : 0.000055,
+            "tank" : 20
+        }
+    ]
+    
+}

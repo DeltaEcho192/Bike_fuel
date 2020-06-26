@@ -35,7 +35,7 @@ function adrMaker()
     var endArr = fnlEndAdr.split(" ")
     fnlStartAdr = startArr.join("+")
     fnlEndAdr = endArr.join("+")
-    var url='https://maps.googleapis.com/maps/api/directions/json?origin=' + fnlStartAdr +"&destination="+fnlEndAdr+'&key=AIzaSyAIf-vJKm6y4vhqsCFdMkuRYIOjb8Q8rxM';
+    var url= 'http://localhost:9000/direc/'+ fnlStartAdr +"/"+fnlEndAdr;
 
      
     return url
