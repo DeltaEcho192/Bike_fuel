@@ -23,12 +23,12 @@ Requirments:
 
 
 Future Additions:
-- Being able to add multiple stops.
+- Include selection for return journey calculations
 - Selecting differnt motorbikes
 - Scrap current fuel prices from the web to be more acurate.
-- Include selection for return journey calculations
 - Include Map with route shown on it.
 - JSON for bike information
+- Being able to add multiple stops.
 
 Reference:
 
