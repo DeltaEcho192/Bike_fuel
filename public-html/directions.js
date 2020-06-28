@@ -60,8 +60,8 @@ function adrMaker()
     fnlStartAdr = startArr.join("+")
     fnlEndAdr = endArr.join("+")
     var url= 'http://localhost:9000/direc/'+ fnlStartAdr +"/"+fnlEndAdr;
-
-     
+    var ifrm = document.getElementById("mapDisp")
+    ifrm.src = "https://www.google.com/maps/embed/v1/directions?origin="+fnlStartAdr +"&destination="+fnlEndAdr + "&key=AIzaSyAIf-vJKm6y4vhqsCFdMkuRYIOjb8Q8rxM"
     return url
 
 }
