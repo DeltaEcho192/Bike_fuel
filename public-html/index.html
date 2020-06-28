@@ -53,6 +53,14 @@
     <br>
     <br>
     <div>
+      <select id = "bikeList">
+        <option value = "triumph_speedmaster">Triumph Speedmaster</option>
+        <option value = "gs_1200">BMW GS 1200</option>
+        <option value = "gs_800">BMW GS 800</option>
+      </select>
+    </div>
+
+    <div>
       <button onclick=apiCall()>Calculate</button>
     </div>
 
@@ -60,11 +68,10 @@
     <br>
     <br>
     <div id="infoTbl">
-
     <table>
       <tr>
         <th>Bike</th>
-        <th>Triumph Speedmaster</th>
+        <th id="bikeTbl"></th>
       </tr>
       <tr>
         <th>Start</th>
@@ -95,4 +102,5 @@
 
   </body>
   <script src=directions.js></script>
+    
 </html>

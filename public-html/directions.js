@@ -1,5 +1,7 @@
 function apiCall(){
-     
+    console.log(document.getElementById("bikeList").value)
+    var bikeV = document.getElementById("bikeList").value
+    bikeNamer(bikeV)
     var url=adrMaker();
     console.log(url)
     var xmlHttp = new XMLHttpRequest();
@@ -10,13 +12,22 @@ function apiCall(){
         var distDisplay = apireturn.routes[0].legs[0].distance.text
         var time = apireturn.routes[0].legs[0].duration.text
         document.getElementById("distTbl").innerHTML = distDisplay
-        calculations(distance,time)
+        calculations(distance,time,bikeV)
         stopCheck(distance)
     }
     xmlHttp.open("GET", url, true);
     xmlHttp.send();
     
 }
+
+function bikeNamer(str) {
+    var splitStr = str.toLowerCase().split('_');
+    for (var i = 0; i < splitStr.length; i++) {
+        splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);     
+    }
+    var bikefnl = splitStr.join(' '); 
+    document.getElementById("bikeTbl").innerHTML = bikefnl;
+ }
 
 function adrMaker()
 {
@@ -42,9 +53,9 @@ function adrMaker()
 
 }
 
-function calculations(distance,time)
+function calculations(distance,time,bike)
 {
-    url = "http://localhost:9000/bike/gs_800"
+    url = "http://localhost:9000/bike/" + bike
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function() {
     if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
