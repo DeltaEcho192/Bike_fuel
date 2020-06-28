@@ -49,10 +49,9 @@
              placeholder="Zip">
 
     </div>
+
     <br>
-    <br>
-    <br>
-    <div>
+    <inline>
       <select id = "bikeList">
         <option value = "triumph_speedmaster">Triumph Speedmaster</option>
         <option value = "gs_1200">BMW GS 1200</option>
@@ -60,8 +59,8 @@
       </select>
       <br>
       <input type="checkbox" id="rtn" name="rtn">
-      <label for="rtn">Include Return Journey</label>
-    </div>
+      <label id="rtnLbl">Include Return Journey</label>
+    </inline>
 
     <div>
       <button onclick=apiCall()>Calculate</button>
@@ -105,9 +104,11 @@
         <th id="stopsTbl"></th>
       </tr>
     </table>
+    <inline class="mapFrame">
+      <iframe id="mapDisp" width="650px" height="450" frameborder="0" style="border:0"
+      allowfullscreen></iframe>
+    </inline>
   </div>
-  <iframe id="mapDisp" width="600" height="450" frameborder="0" style="border:0"
-   allowfullscreen></iframe>
 
   </body>
   <script src=directions.js></script>
