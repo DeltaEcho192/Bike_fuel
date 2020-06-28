@@ -1,5 +1,5 @@
 function apiCall(){
-    console.log(document.getElementById("bikeList").value)
+    console.log(document.getElementById("rtn").checked)
     var bikeV = document.getElementById("bikeList").value
     bikeNamer(bikeV)
     var url=adrMaker();
@@ -11,7 +11,20 @@ function apiCall(){
         var distance = apireturn.routes[0].legs[0].distance.value
         var distDisplay = apireturn.routes[0].legs[0].distance.text
         var time = apireturn.routes[0].legs[0].duration.text
-        document.getElementById("distTbl").innerHTML = distDisplay
+        if(document.getElementById("rtn").checked == true)
+        {
+            distance = distance * 2;
+            var dispValues = rtn(distDisplay,time)
+            document.getElementById("distTbl").innerHTML = dispValues[0]
+            document.getElementById("timeTbl").innerHTML = dispValues[1]
+            console.log("Return Distance Checked")
+
+        }
+        else
+        {
+            document.getElementById("distTbl").innerHTML = distDisplay
+            document.getElementById("timeTbl").innerHTML = time
+        }
         calculations(distance,time,bikeV)
         stopCheck(distance)
     }
@@ -84,4 +97,18 @@ function stopCheck(distance)
     var amtStops = Math.floor(distance / 200000)
     document.getElementById("stopsTbl").innerHTML = amtStops
     console.log(amtStops)
+}
+
+function rtn(dispDist,time)
+{
+    var distW = dispDist.split(" ")
+    var timeW = time.split(" ")
+    var dist = parseFloat(distW[0])
+    var time = parseFloat(timeW[0])
+    var dist = dist * 2
+    var time = time * 2
+    var distFnl = dist + " KM"
+    var timeFnl = time + " Mins"
+
+    return [distFnl,timeFnl]
 }
