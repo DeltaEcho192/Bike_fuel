@@ -1,0 +1,11 @@
+Add more bikes to the info list
+Make website prettier
+Rewrite README
+Webscrapping implementation
+{
+    either python to json also docker and then reading in file on node (easier but heavier footprint)
+    or node direct scrapping (Benifit acurate more light weight but more difficult)
+}
+Get autocomplete working!!!
+Last thing recreate api keys silent or create enviroment variable
+Make everything docker runable with docker compose.

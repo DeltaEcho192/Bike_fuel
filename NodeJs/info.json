@@ -2,7 +2,8 @@
     "triumph_speedmaster": [
         {
             "fuel_eff" : 0.00006,
-            "tank" : 16.4
+            "tank" : 16.4,
+            "range" : 270
         }
     
     ],
@@ -10,14 +11,17 @@
     "gs_1200": [
         {
             "fuel_eff" : 0.000055,
-            "tank" : 20
+            "tank" : 20,
+            "range" : 360
+            
         }
     ]
     ,
     "gs_800":[
         {
             "fuel_eff" : 0.00004,
-            "tank" : 17
+            "tank" : 17,
+            "range" : 425
             
         }
     ]

@@ -86,6 +86,18 @@ function calculations(distance,time,bike)
         var fnlCost = Math.round(fnlCost * 100) / 100
         document.getElementById("costTbl").innerHTML = "R " + fnlCost
         console.log(fnlCost)
+
+        var amtStops = distance / (apireturn[0].range * 1000)
+        if (amtStops < 1)
+        {
+            amtStops = Math.floor(amtStops);
+        }
+        else
+        {
+            amtStops = Math.ceil(amtStops)
+        }
+        document.getElementById("stopsTbl").innerHTML = amtStops
+        console.log(amtStops)
     }
     xmlHttp.open("GET", url, true);
     xmlHttp.send();
