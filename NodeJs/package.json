@@ -1,0 +1,15 @@
+{
+  "name": "node_docker_app",
+  "version": "1.0.0",
+  "description": "Node.js server for Bike Fuel",
+  "author": "Anthony Durrer ",
+  "main": "proxy.js",
+  "scripts": {
+    "start": "node proxy.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "package.json": "^2.0.1",
+    "request": "^2.88.2"
+  }
+}
