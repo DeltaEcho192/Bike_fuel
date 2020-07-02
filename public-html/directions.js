@@ -1,4 +1,18 @@
+var placeSearch, autocomplete,autocomplete2;
+
+var place = [];
+
+var componentForm = {
+  street_number: 'short_name',
+  route: 'long_name',
+  locality: 'long_name',
+  administrative_area_level_1: 'short_name',
+  country: 'long_name',
+  postal_code: 'short_name'
+};
+
 function apiCall(){
+    console.log(place)
     console.log(document.getElementById("rtn").checked)
     var bikeV = document.getElementById("bikeList").value
     bikeNamer(bikeV)
@@ -44,21 +58,19 @@ function bikeNamer(str) {
 
 function adrMaker()
 {
-    var startAdr = document.getElementById("startAdr").value
-    var startCity = document.getElementById("startCity").value
-    var startZip = document.getElementById("startZip").value
-    var endAdr = document.getElementById("endAdr").value
-    var endCity = document.getElementById("endCity").value
-    var endZip = document.getElementById("endZip").value
+    var startAdr = document.getElementById("autocomplete").value
+    console.log(startAdr)
+    var strStartAdr = startAdr.split(" ")
+    document.getElementById("startAdTbl").innerHTML = startAdr
+    var fnlStartAdr = strStartAdr.join("+")
+    console.log(fnlStartAdr)
+    var endAdr = document.getElementById("autocomplete2").value
+    console.log(endAdr)
+    document.getElementById("endAdTbl").innerHTML = endAdr
+    var strEndAdr = endAdr.split(" ")
+    var fnlEndAdr = strEndAdr.join("+")
+    console.log(fnlEndAdr)
 
-    var fnlStartAdr = startAdr + ", "+startCity+", " + startZip
-    var fnlEndAdr = endAdr + ", " + endCity + ", " + endZip
-    document.getElementById("startAdTbl").innerHTML = fnlStartAdr
-    document.getElementById("endAdTbl").innerHTML = fnlEndAdr
-    var startArr = fnlStartAdr.split(" ")
-    var endArr = fnlEndAdr.split(" ")
-    fnlStartAdr = startArr.join("+")
-    fnlEndAdr = endArr.join("+")
     var url= 'http://localhost:9000/direc/'+ fnlStartAdr +"/"+fnlEndAdr;
     var ifrm = document.getElementById("mapDisp")
     ifrm.src = "https://www.google.com/maps/embed/v1/directions?origin="+fnlStartAdr +"&destination="+fnlEndAdr + "&key=AIzaSyAIf-vJKm6y4vhqsCFdMkuRYIOjb8Q8rxM"
@@ -124,3 +136,58 @@ function rtn(dispDist,time)
 
     return [distFnl,timeFnl]
 }
+
+function initAutocomplete() {
+    // Create the autocomplete object, restricting the search predictions to
+    // geographical location types.
+    autocomplete = new google.maps.places.Autocomplete(
+        document.getElementById('autocomplete'), {types: ['geocode']});
+    autocomplete2 = new google.maps.places.Autocomplete(
+            document.getElementById('autocomplete2'), {types: ['geocode']});
+  
+    // Avoid paying for data that you don't need by restricting the set of
+    // place fields that are returned to just the address components.
+    autocomplete.setFields(['address_component']);
+    autocomplete2.setFields(['address_component']);
+  
+    // When the user selects an address from the drop-down, populate the
+    // address fields in the form.
+    autocomplete.addListener('place_changed', fillInAddress);
+    autocomplete2.addListener('place_changed',fillInAddress);
+  }
+
+
+  function fillInAddress() {
+    // Get the place details from the autocomplete object.
+    var place = autocomplete.getPlace();
+      console.log(place);
+    for (var component in componentForm) {
+      document.getElementById(component).value = '';
+      document.getElementById(component).disabled = false;
+    }
+  
+    // Get each component of the address from the place details,
+    // and then fill-in the corresponding field on the form.
+    for (var i = 0; i < place.address_components.length; i++) {
+      var addressType = place.address_components[i].types[0];
+      if (componentForm[addressType]) {
+        var val = place.address_components[i][componentForm[addressType]];
+        console.log(val);
+        place.push(val);
+      }
+    }
+  }
+
+function geolocate() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var geolocation = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        var circle = new google.maps.Circle(
+            {center: geolocation, radius: position.coords.accuracy});
+        autocomplete.setBounds(circle.getBounds());
+      });
+    }
+  }

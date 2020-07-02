@@ -14,33 +14,19 @@
       <div class="form-group">
         <div class="start">
           <h4>Start Address</h4>
-          <input type="street" 
-                 class="form-control" 
-                 id="startAdr" 
-                 placeholder="Start Street">
-          <input type="city" 
-                 class="form-control" 
-                 id="startCity" 
-                 placeholder="City">
-          <input type="zip" 
-                 class="form-control" 
-                 id="startZip" 
-                 placeholder="Zip">
+          <input id="autocomplete"
+          class="form-control"
+          placeholder="Enter your Start address"
+          onFocus="geolocate()"
+          type="text"/>
         </div>
         <div class="end">
         <h4>End Address</h4>
-        <input type="street" 
-               class="form-control" 
-               id="endAdr" 
-               placeholder="End Street">
-        <input type="city" 
-               class="form-control" 
-               id="endCity" 
-               placeholder="City">
-        <input type="zip" 
-               class="form-control" 
-               id="endZip" 
-               placeholder="Zip">
+        <input id="autocomplete2"
+          class="form-control"
+          placeholder="Enter your End address"
+          onFocus="geolocate()"
+          type="text"/>
         </div>
         <div class="buttons">
           <div class="selection">
@@ -102,5 +88,6 @@
 
   </body>
   <script src=directions.js></script>
-    
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIf-vJKm6y4vhqsCFdMkuRYIOjb8Q8rxM&libraries=places&callback=initAutocomplete"
+  async defer></script>
 </html>

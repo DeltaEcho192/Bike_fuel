@@ -23,6 +23,7 @@ body{
 .form-control{
   margin: 1em auto;
   padding: 0.5em;
+  width: 350px;
 }
 .start{
   text-align: center;
