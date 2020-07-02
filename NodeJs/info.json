@@ -12,16 +12,40 @@
         {
             "fuel_eff" : 0.000055,
             "tank" : 20,
-            "range" : 360
+            "range" : 370
             
         }
     ]
     ,
+    "gs_1250": [
+        {
+            "fuel_eff" : 0.0000475,
+            "tank" : 20,
+            "range" : 420
+            
+        }
+    ],
+    "gs_adv":[
+        {
+            "fuel_eff" : 0.0000475,
+            "tank" : 30,
+            "range" : 600
+            
+        }
+    ],
     "gs_800":[
         {
-            "fuel_eff" : 0.00004,
-            "tank" : 17,
-            "range" : 425
+            "fuel_eff" : 0.000051,
+            "tank" : 16,
+            "range" : 304
+            
+        }
+    ],
+    "rninet":[
+        {
+            "fuel_eff" : 0.000053,
+            "tank" : 18,
+            "range" : 335
             
         }
     ]

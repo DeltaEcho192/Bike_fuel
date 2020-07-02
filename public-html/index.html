@@ -7,110 +7,100 @@
 
   </head>
   <body>
-    <div class="form-group">
-      Start Address
-      <br>
-      <input type="street" 
-             class="form-control" 
-             id="startAdr" 
-             placeholder="Start Street">
-      <br>
-      <br>
-      <input type="city" 
-             class="form-control" 
-             id="startCity" 
-             placeholder="City">
-      <br>
-      <br>
-      <input type="zip" 
-             class="form-control" 
-             id="startZip" 
-             placeholder="Zip">
-      <br>
-      <br>
-      <br>
-      End Address
-      <br>
-      <input type="street" 
-             class="form-control" 
-             id="endAdr" 
-             placeholder="Start Street">
-      <br>
-      <br>
-      <input type="city" 
-             class="form-control" 
-             id="endCity" 
-             placeholder="City">
-       <br>
-       <br>
-      <input type="zip" 
-             class="form-control" 
-             id="endZip" 
-             placeholder="Zip">
-
+    <div class="heading">
+      <header>Bike Fuel App</header>
     </div>
-
-    <br>
-    <inline>
-      <select id = "bikeList">
-        <option value = "triumph_speedmaster">Triumph Speedmaster</option>
-        <option value = "gs_1200">BMW GS 1200</option>
-        <option value = "gs_800">BMW GS 800</option>
-      </select>
-      <br>
-      <input type="checkbox" id="rtn" name="rtn">
-      <label id="rtnLbl">Include Return Journey</label>
-    </inline>
-
-    <div>
-      <button onclick=apiCall()>Calculate</button>
+    <div class="form-main">
+      <div class="form-group">
+        <div class="start">
+          <h4>Start Address</h4>
+          <input type="street" 
+                 class="form-control" 
+                 id="startAdr" 
+                 placeholder="Start Street">
+          <input type="city" 
+                 class="form-control" 
+                 id="startCity" 
+                 placeholder="City">
+          <input type="zip" 
+                 class="form-control" 
+                 id="startZip" 
+                 placeholder="Zip">
+        </div>
+        <div class="end">
+        <h4>End Address</h4>
+        <input type="street" 
+               class="form-control" 
+               id="endAdr" 
+               placeholder="End Street">
+        <input type="city" 
+               class="form-control" 
+               id="endCity" 
+               placeholder="City">
+        <input type="zip" 
+               class="form-control" 
+               id="endZip" 
+               placeholder="Zip">
+        </div>
+        <div class="buttons">
+          <div class="selection">
+            <select id = "bikeList">
+              <option value = "triumph_speedmaster">Triumph Speedmaster</option>
+              <option value = "gs_1200">BMW GS 1200</option>
+              <option value = "gs_800">BMW GS 800</option>
+            </select>
+            <input type="checkbox" id="rtn" name="rtn">
+            <label id="rtnLbl">Include Return Journey</label>
+          </div> 
+          <div class="calcBtn">
+            <button onclick=apiCall()>Calculate</button>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <br>
-    <br>
-    <br>
-    <div id="infoTbl">
-    <table>
-      <tr>
-        <th>Bike</th>
-        <th id="bikeTbl"></th>
-      </tr>
-      <tr>
-        <th>Start</th>
-        <th id="startAdTbl"></th>
-      </tr>
-      <tr>
-        <th>End</th>
-        <th id="endAdTbl"></th>
-      </tr>
-      <tr>
-        <th>Distance</th>
-        <th id="distTbl"></th>
-      </tr>
-      <tr>
-        <th>Time</th>
-        <th id="timeTbl"></th>
-      </tr>
-      <tr>
-        <th>Litres</th>
-        <th id="lTbl"></th>
-      </tr>
-      <tr>
-        <th>Cost</th>
-        <th id="costTbl"></th>
-      </tr>
-      <tr>
-        <th>Stops</th>
-        <th id="stopsTbl"></th>
-      </tr>
-    </table>
-    <inline class="mapFrame">
-      <iframe id="mapDisp" width="650px" height="450" frameborder="0" style="border:0"
-      allowfullscreen></iframe>
-    </inline>
-  </div>
-
-  </body>
+    <div class="infoTbl" id="infoTbl">
+      <div class="infoWrapper">
+        <table>
+          <tr>
+            <th>Bike</th>
+            <th id="bikeTbl"></th>
+          </tr>
+          <tr>
+            <th>Start</th>
+            <th id="startAdTbl"></th>
+          </tr>
+          <tr>
+            <th>End</th>
+            <th id="endAdTbl"></th>
+          </tr>
+          <tr>
+            <th>Distance</th>
+            <th id="distTbl"></th>
+          </tr>
+          <tr>
+            <th>Time</th>
+            <th id="timeTbl"></th>
+          </tr>
+          <tr>
+            <th>Litres</th>
+            <th id="lTbl"></th>
+          </tr>
+          <tr>
+            <th>Cost</th>
+            <th id="costTbl"></th>
+          </tr>
+          <tr>
+            <th>Stops</th>
+            <th id="stopsTbl"></th>
+          </tr>
+        </table>
+          <iframe id="mapDisp" width="650px" height="450" frameborder="0" style="border:0"
+          allowfullscreen>
+      </div>
+    
+  </div>  
   <script src=directions.js></script>
+  </body>
+
     
 </html>

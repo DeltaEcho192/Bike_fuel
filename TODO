@@ -1,6 +1,4 @@
 Add more bikes to the info list
 Make website prettier
-Rewrite README
 Get autocomplete working!!!
 Last thing recreate api keys silent or create enviroment variable
-Make everything docker runable with docker compose.

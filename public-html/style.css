@@ -1,58 +1,82 @@
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    float: left;
-    height: 450px;
-  }
-  
-  td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-  }
-  input, label {
-    margin: 5px 5px;
-    border: 1px solid #dddddd;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap');
 
-  }
-  
-  .form-group {
-    margin: 30px auto;
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-  }
-  
-  .form-control {
-    float: left;
-  }
-  
-  #inputStreet {
-    width: 100%;
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-  }
-  
-  #inputCity {
-    width: 50%;
-  }
-  
-  #inputZip {
-    width: 50%;
-  }
-  button {
-    background-color: black;
-    color: white;
-    padding: 12px;
-    margin: 10px 0;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    font-size: 17px;
-  }
+*{
+  box-sizing: border-box;
+}
+body{
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #e6e6e6;
+}
+.heading{
+  background-color: #262626;
+  color: white;
+  font-weight: bold;
+  padding: 1em;
+  margin:0;
+}
+.form-group{
+  padding: 1em;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.form-control{
+  margin: 1em auto;
+  padding: 0.5em;
+}
+.start{
+  text-align: center;
+}
+.end{
+  text-align: center;
+}
+.selection
+{
+  text-align: center;
+}
+.calcBtn{
+  text-align: center;
+}
+button {
+  background-color: black;
+  color: white;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 17px;
+}
+h4{
+    margin: 0;
+    padding: 0;
+}
+.infoTbl{
+  background-color: #bfbfbf;
+  padding-top: 1em;
+}
+.infowrapper{
+  max-width: 1200px;
+  display: flex;
+
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  margin: 0 auto;
+  height: 450px;
+  table-layout: auto;
+  width: 100px
+
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
   .mapFrame
   {
-    width: 650px;
    padding: 50;
   }
   #bikeList
