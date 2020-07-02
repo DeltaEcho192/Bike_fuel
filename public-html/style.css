@@ -33,12 +33,15 @@ body{
 .selection
 {
   text-align: center;
+  font-family: 'Montserrat', sans-serif;
 }
 .calcBtn{
   text-align: center;
 }
+
 button {
   background-color: black;
+  font-family: 'Montserrat', sans-serif;
   color: white;
   padding: 12px;
   margin: 10px 0;
@@ -54,20 +57,17 @@ h4{
 .infoTbl{
   background-color: #bfbfbf;
   padding-top: 1em;
+  text-align: center;
 }
 .infowrapper{
-  max-width: 1200px;
-  display: flex;
+  display: inline-flex;
 
 }
 table {
-  font-family: arial, sans-serif;
+  font-family: 'Montserrat', sans-serif;
   border-collapse: collapse;
-  margin: 0 auto;
   height: 450px;
-  table-layout: auto;
-  width: 100px
-
+  margin: 0 1em;
 }
 
 td, th {
@@ -87,6 +87,6 @@ td, th {
   }
   #rtnLbl
   {
-    font-family: Arial, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     border: none;
   }
