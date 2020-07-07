@@ -3,8 +3,7 @@
     <title>
       Bike Fuel Calculator
     </title>
-    <link rel="stylesheet" href="style.css">
-
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="heading">
@@ -14,32 +13,36 @@
       <div class="form-group">
         <div class="start">
           <h4>Start Address</h4>
-          <input id="autocomplete"
-          class="form-control"
-          placeholder="Enter your Start address"
-          onFocus="geolocate()"
-          type="text"/>
+          <input
+            id="autocomplete"
+            class="form-control"
+            placeholder="Enter your Start address"
+            onFocus="geolocate()"
+            type="text"
+          />
         </div>
         <div class="end">
-        <h4>End Address</h4>
-        <input id="autocomplete2"
-          class="form-control"
-          placeholder="Enter your End address"
-          onFocus="geolocate()"
-          type="text"/>
+          <h4>End Address</h4>
+          <input
+            id="autocomplete2"
+            class="form-control"
+            placeholder="Enter your End address"
+            onFocus="geolocate()"
+            type="text"
+          />
         </div>
         <div class="buttons">
           <div class="selection">
-            <select id = "bikeList">
-              <option value = "triumph_speedmaster">Triumph Speedmaster</option>
-              <option value = "gs_1200">BMW GS 1200</option>
-              <option value = "gs_800">BMW GS 800</option>
+            <select id="bikeList">
+              <option value="1">Triumph Speedmaster</option>
+              <option value="2">BMW GS 1200</option>
+              <option value="5">BMW GS 800</option>
             </select>
-            <input type="checkbox" id="rtn" name="rtn">
+            <input type="checkbox" id="rtn" name="rtn" />
             <label id="rtnLbl">Include Return Journey</label>
-          </div> 
+          </div>
           <div class="calcBtn">
-            <button onclick=apiCall()>Calculate</button>
+            <button onclick="apiCall()">Calculate</button>
           </div>
         </div>
       </div>
@@ -80,14 +83,21 @@
             <th id="stopsTbl"></th>
           </tr>
         </table>
-          <iframe id="mapDisp" width="650px" height="450" frameborder="0" style="border:0"
-          allowfullscreen></iframe>
+        <iframe
+          id="mapDisp"
+          width="650px"
+          height="450"
+          frameborder="0"
+          style="border: 0;"
+          allowfullscreen
+        ></iframe>
       </div>
-    
-  </div>  
-
+    </div>
   </body>
-  <script src=directions.js></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIf-vJKm6y4vhqsCFdMkuRYIOjb8Q8rxM&libraries=places&callback=initAutocomplete"
-  async defer></script>
+  <script src="directions.js"></script>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIf-vJKm6y4vhqsCFdMkuRYIOjb8Q8rxM&libraries=places&callback=initAutocomplete"
+    async
+    defer
+  ></script>
 </html>

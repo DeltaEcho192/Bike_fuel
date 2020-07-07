@@ -1,4 +1,6 @@
 Add more bikes to the info list
-Make website prettier
-Get autocomplete working!!!
-Last thing recreate api keys silent or create enviroment variable
+Add bikes in html
+Use a id code for bikes instead of name
+Fix meaningless error codes and reduce places API requests
+Docker compose
+Add more currencies and fuel prices using node and json
