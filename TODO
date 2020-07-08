@@ -1,3 +1,11 @@
 Add more bikes to the info list
 Docker compose
 Add more currencies and fuel prices using node and json
+Multiple Stops (Big project
+will need to make multiple requests and then consolidate the information
+Use new Page with changing amount of input fields
+    (
+        how to have changing amount of requests for the autocomplete api
+    )
+)
+config file for the hosts and ports etc.

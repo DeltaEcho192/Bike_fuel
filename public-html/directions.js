@@ -1,5 +1,6 @@
 var placeSearch, autocomplete, autocomplete2;
-
+var symbol = "";
+var price;
 var place = [];
 
 var componentForm = {
@@ -14,6 +15,8 @@ var componentForm = {
 function apiCall() {
   console.log(document.getElementById("rtn").checked);
   var bikeV = document.getElementById("bikeList").value;
+  fuelGet(1);
+  console.log(symbol);
   var url = adrMaker();
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function () {
@@ -69,13 +72,13 @@ function calculations(distance, time, bike) {
       var apireturn = JSON.parse(xmlHttp.responseText);
     document.getElementById("bikeTbl").innerHTML = apireturn[0].name;
     var fuelEff = apireturn[0].fuel_eff;
-    var fuelPrice = 13.2;
+
     var fuelUsage = fuelEff * distance;
     var fuelUsage = Math.round(fuelUsage * 100) / 100;
     document.getElementById("lTbl").innerHTML = fuelUsage + " L";
-    var fnlCost = fuelUsage * fuelPrice;
+    var fnlCost = fuelUsage * price;
     var fnlCost = Math.round(fnlCost * 100) / 100;
-    document.getElementById("costTbl").innerHTML = "R " + fnlCost;
+    document.getElementById("costTbl").innerHTML = symbol + " " + fnlCost;
 
     var amtStops = distance / (apireturn[0].range * 1000);
     if (amtStops < 1) {
@@ -86,6 +89,20 @@ function calculations(distance, time, bike) {
     document.getElementById("stopsTbl").innerHTML = amtStops;
   };
   xmlHttp.open("GET", url, true);
+  xmlHttp.send();
+}
+
+function fuelGet(id) {
+  url = "http://localhost:9000/price/" + id;
+  console.log(url);
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.onreadystatechange = function () {
+    if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+      var priceReturn = JSON.parse(xmlHttp.responseText);
+    symbol = String(priceReturn[0].symbol);
+    price = priceReturn[0].price;
+  };
+  xmlHttp.open("GET", url, false);
   xmlHttp.send();
 }
 

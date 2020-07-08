@@ -36,5 +36,13 @@ app.get("/bike/:id", (req, res) => {
   });
 });
 
+app.get("/price/:id", (req, res) => {
+  fs.readFile("price.json", (err, data) => {
+    if (err) throw err;
+    var idPrice = req.params.id;
+    let price = JSON.parse(data);
+    res.json(price[idPrice]);
+  });
+});
 const PORT = process.env.PORT || 9000;
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
