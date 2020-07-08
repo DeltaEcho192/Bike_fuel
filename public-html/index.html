@@ -11,27 +11,34 @@
     </div>
     <div class="form-main">
       <div class="form-group">
-        <div class="start">
-          <h4>Start Address</h4>
-          <input
-            id="autocomplete"
-            class="form-control"
-            placeholder="Enter your Start address"
-            onFocus="geolocate()"
-            type="text"
-          />
+        <div class="leftwrapper">
+          <div class="start">
+            <h4>Start Address</h4>
+            <input
+              id="autocomplete"
+              class="form-control"
+              placeholder="Enter your Start address"
+              onFocus="geolocate()"
+              type="text"
+            />
+          </div>
+          <div class="end">
+            <h4>End Address</h4>
+            <input
+              id="autocomplete2"
+              class="form-control"
+              placeholder="Enter your End address"
+              onFocus="geolocate()"
+              type="text"
+            />
+          </div>
+          <div class="buttons">
+            <div class="calcBtn">
+              <button onclick="apiCall()">Calculate</button>
+            </div>
+          </div>
         </div>
-        <div class="end">
-          <h4>End Address</h4>
-          <input
-            id="autocomplete2"
-            class="form-control"
-            placeholder="Enter your End address"
-            onFocus="geolocate()"
-            type="text"
-          />
-        </div>
-        <div class="buttons">
+        <div class="rightWrapper">
           <div class="selection">
             <select id="bikeList">
               <option value="1">Triumph Speedmaster</option>
@@ -41,11 +48,13 @@
               <option value="5">BMW GS 800</option>
               <option value="6">BMW RnineT</option>
             </select>
+            <select id="priceList">
+              <option value="1">ZAR</option>
+              <option value="2">CHF</option>
+              <option value="3">USD</option>
+            </select>
             <input type="checkbox" id="rtn" name="rtn" />
             <label id="rtnLbl">Include Return Journey</label>
-          </div>
-          <div class="calcBtn">
-            <button onclick="apiCall()">Calculate</button>
           </div>
         </div>
       </div>

@@ -1,48 +1,50 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap");
 
-*{
+* {
   box-sizing: border-box;
 }
-body{
+body {
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   background-color: #e6e6e6;
 }
-.heading{
+.heading {
   background-color: #262626;
   color: white;
   font-weight: bold;
   padding: 1em;
-  margin:0;
+  margin: 0;
 }
-.form-group{
+.form-group {
   padding: 1em;
   max-width: 1200px;
   margin: 0 auto;
+  display: flex;
+  justify-content: center;
 }
-.form-control{
+.form-control {
   margin: 1em auto;
   padding: 0.5em;
   width: 350px;
 }
-.start{
+.start {
   text-align: center;
 }
-.end{
+.end {
   text-align: center;
 }
-.selection
-{
+.selection {
   text-align: center;
-  font-family: 'Montserrat', sans-serif;
+  display: inline-grid;
+  font-family: "Montserrat", sans-serif;
 }
-.calcBtn{
+.calcBtn {
   text-align: center;
 }
 
 button {
   background-color: black;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: white;
   padding: 12px;
   margin: 10px 0;
@@ -51,43 +53,51 @@ button {
   cursor: pointer;
   font-size: 17px;
 }
-h4{
-    margin: 0;
-    padding: 0;
+h4 {
+  margin: 0;
+  padding: 0;
 }
-.infoTbl{
+.infoTbl {
   background-color: #bfbfbf;
   padding-top: 1em;
   text-align: center;
 }
-.infowrapper{
+.infowrapper {
   display: inline-flex;
-
+}
+.rightWrapper {
+  padding: 23;
 }
 table {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   border-collapse: collapse;
   height: 450px;
   margin: 0 1em;
 }
 
-td, th {
+td,
+th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
 }
-  .mapFrame
-  {
-   padding: 50;
-  }
-  #bikeList
-  {
-    padding: 5;
-    margin: 10;
-    margin-left: auto;
-  }
-  #rtnLbl
-  {
-    font-family: 'Montserrat', sans-serif;
-    border: none;
-  }
+.mapFrame {
+  padding: 50;
+}
+#bikeList {
+  padding: 5;
+  margin: 10;
+  margin-left: 0;
+}
+#priceList {
+  padding: 5;
+  margin: 10;
+  margin-left: 0;
+}
+option {
+  font-family: "Montserrat", sans-serif;
+}
+#rtnLbl {
+  font-family: "Montserrat", sans-serif;
+  border: none;
+}

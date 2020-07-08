@@ -15,7 +15,8 @@ var componentForm = {
 function apiCall() {
   console.log(document.getElementById("rtn").checked);
   var bikeV = document.getElementById("bikeList").value;
-  fuelGet(1);
+  var priceV = document.getElementById("priceList").value;
+  fuelGet(priceV);
   console.log(symbol);
   var url = adrMaker();
   var xmlHttp = new XMLHttpRequest();
