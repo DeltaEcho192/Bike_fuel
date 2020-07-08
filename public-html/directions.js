@@ -12,11 +12,9 @@ var componentForm = {
 };
 
 function apiCall() {
-  console.log(place);
   console.log(document.getElementById("rtn").checked);
   var bikeV = document.getElementById("bikeList").value;
   var url = adrMaker();
-  console.log(url);
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function () {
     if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
@@ -29,7 +27,6 @@ function apiCall() {
       var dispValues = rtn(distDisplay, time);
       document.getElementById("distTbl").innerHTML = dispValues[0];
       document.getElementById("timeTbl").innerHTML = dispValues[1];
-      console.log("Return Distance Checked");
     } else {
       document.getElementById("distTbl").innerHTML = distDisplay;
       document.getElementById("timeTbl").innerHTML = time;
@@ -43,17 +40,15 @@ function apiCall() {
 
 function adrMaker() {
   var startAdr = document.getElementById("autocomplete").value;
-  console.log(startAdr);
   var strStartAdr = startAdr.split(" ");
   document.getElementById("startAdTbl").innerHTML = startAdr;
   var fnlStartAdr = strStartAdr.join("+");
-  console.log(fnlStartAdr);
+
   var endAdr = document.getElementById("autocomplete2").value;
-  console.log(endAdr);
+
   document.getElementById("endAdTbl").innerHTML = endAdr;
   var strEndAdr = endAdr.split(" ");
   var fnlEndAdr = strEndAdr.join("+");
-  console.log(fnlEndAdr);
 
   var url = "http://localhost:9000/direc/" + fnlStartAdr + "/" + fnlEndAdr;
   var ifrm = document.getElementById("mapDisp");
@@ -72,20 +67,15 @@ function calculations(distance, time, bike) {
   xmlHttp.onreadystatechange = function () {
     if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
       var apireturn = JSON.parse(xmlHttp.responseText);
-    console.log(apireturn[0].name);
-    console.log(apireturn[0].fuel_eff);
-    console.log(apireturn[0].tank);
     document.getElementById("bikeTbl").innerHTML = apireturn[0].name;
     var fuelEff = apireturn[0].fuel_eff;
     var fuelPrice = 13.2;
     var fuelUsage = fuelEff * distance;
     var fuelUsage = Math.round(fuelUsage * 100) / 100;
     document.getElementById("lTbl").innerHTML = fuelUsage + " L";
-    console.log(fuelUsage);
     var fnlCost = fuelUsage * fuelPrice;
     var fnlCost = Math.round(fnlCost * 100) / 100;
     document.getElementById("costTbl").innerHTML = "R " + fnlCost;
-    console.log(fnlCost);
 
     var amtStops = distance / (apireturn[0].range * 1000);
     if (amtStops < 1) {
@@ -94,7 +84,6 @@ function calculations(distance, time, bike) {
       amtStops = Math.ceil(amtStops);
     }
     document.getElementById("stopsTbl").innerHTML = amtStops;
-    console.log(amtStops);
   };
   xmlHttp.open("GET", url, true);
   xmlHttp.send();
@@ -103,7 +92,6 @@ function calculations(distance, time, bike) {
 function stopCheck(distance) {
   var amtStops = Math.floor(distance / 200000);
   document.getElementById("stopsTbl").innerHTML = amtStops;
-  console.log(amtStops);
 }
 
 function rtn(dispDist, time) {
@@ -120,8 +108,6 @@ function rtn(dispDist, time) {
 }
 
 function initAutocomplete() {
-  // Create the autocomplete object, restricting the search predictions to
-  // geographical location types.
   autocomplete = new google.maps.places.Autocomplete(
     document.getElementById("autocomplete"),
     { types: ["geocode"] }
@@ -131,37 +117,15 @@ function initAutocomplete() {
     { types: ["geocode"] }
   );
 
-  // Avoid paying for data that you don't need by restricting the set of
-  // place fields that are returned to just the address components.
   autocomplete.setFields(["address_component"]);
   autocomplete2.setFields(["address_component"]);
 
-  // When the user selects an address from the drop-down, populate the
-  // address fields in the form.
   autocomplete.addListener("place_changed", fillInAddress);
   autocomplete2.addListener("place_changed", fillInAddress);
 }
 
-//TODO Fix this mess to reduce code as not needed in this use case.
 function fillInAddress() {
-  // Get the place details from the autocomplete object.
-  var place = autocomplete.getPlace();
-  console.log(place);
-  for (var component in componentForm) {
-    document.getElementById(component).value = "";
-    document.getElementById(component).disabled = false;
-  }
-
-  // Get each component of the address from the place details,
-  // and then fill-in the corresponding field on the form.
-  for (var i = 0; i < place.address_components.length; i++) {
-    var addressType = place.address_components[i].types[0];
-    if (componentForm[addressType]) {
-      var val = place.address_components[i][componentForm[addressType]];
-      console.log(val);
-      place.push(val);
-    }
-  }
+  console.log("200");
 }
 
 function geolocate() {
