@@ -12,15 +12,15 @@ app.use((req, res, next) => {
 app.get("/direc/:start/:end", (req, res) => {
   var fnlurl =
     "https://maps.googleapis.com/maps/api/directions/json?origin=" +
-    req.params.start +
+    encodeURI(req.params.start) +
     "&destination=" +
-    req.params.end +
-    "&key=AIzaSyAIf-vJKm6y4vhqsCFdMkuRYIOjb8Q8rxM";
+    encodeURI(req.params.end) +
+    "&units=metric&key=AIzaSyAIf-vJKm6y4vhqsCFdMkuRYIOjb8Q8rxM";
   request({ url: fnlurl }, (error, response, body) => {
     if (error || response.statusCode !== 200) {
       return res.status(500).json({ type: "error", message: err.message });
     }
-
+    console.log(JSON.parse(body));
     res.json(JSON.parse(body));
   });
 });

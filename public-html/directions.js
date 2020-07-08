@@ -17,8 +17,8 @@ function apiCall() {
   var bikeV = document.getElementById("bikeList").value;
   var priceV = document.getElementById("priceList").value;
   fuelGet(priceV);
-  console.log(symbol);
-  var url = adrMaker();
+  var url = encodeURI(adrMaker());
+  console.log(url);
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function () {
     if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
@@ -53,8 +53,8 @@ function adrMaker() {
   document.getElementById("endAdTbl").innerHTML = endAdr;
   var strEndAdr = endAdr.split(" ");
   var fnlEndAdr = strEndAdr.join("+");
-
-  var url = "http://localhost:9000/direc/" + fnlStartAdr + "/" + fnlEndAdr;
+  var url =
+    "http://localhost:9000/direc/" + decodeURI(fnlStartAdr) + "/" + fnlEndAdr;
   var ifrm = document.getElementById("mapDisp");
   ifrm.src =
     "https://www.google.com/maps/embed/v1/directions?origin=" +
