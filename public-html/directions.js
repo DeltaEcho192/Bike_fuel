@@ -2,6 +2,8 @@ var placeSearch, autocomplete, autocomplete2;
 var symbol = "";
 var price;
 var place = [];
+const route = "http://localhost";
+const port = ":9000";
 
 var componentForm = {
   street_number: "short_name",
@@ -53,8 +55,7 @@ function adrMaker() {
   document.getElementById("endAdTbl").innerHTML = endAdr;
   var strEndAdr = endAdr.split(" ");
   var fnlEndAdr = strEndAdr.join("+");
-  var url =
-    "http://localhost:9000/direc/" + decodeURI(fnlStartAdr) + "/" + fnlEndAdr;
+  var url = route + port + "/direc/" + decodeURI(fnlStartAdr) + "/" + fnlEndAdr;
   var ifrm = document.getElementById("mapDisp");
   ifrm.src =
     "https://www.google.com/maps/embed/v1/directions?origin=" +
@@ -66,7 +67,7 @@ function adrMaker() {
 }
 
 function calculations(distance, time, bike) {
-  url = "http://localhost:9000/bike/" + bike;
+  url = route + port + "/bike/" + bike;
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function () {
     if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
@@ -94,7 +95,7 @@ function calculations(distance, time, bike) {
 }
 
 function fuelGet(id) {
-  url = "http://localhost:9000/price/" + id;
+  url = route + port + "/price/" + id;
   console.log(url);
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function () {

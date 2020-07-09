@@ -20,7 +20,6 @@ app.get("/direc/:start/:end", (req, res) => {
     if (error || response.statusCode !== 200) {
       return res.status(500).json({ type: "error", message: err.message });
     }
-    console.log(JSON.parse(body));
     res.json(JSON.parse(body));
   });
 });
@@ -41,6 +40,7 @@ app.get("/price/:id", (req, res) => {
     if (err) throw err;
     var idPrice = req.params.id;
     let price = JSON.parse(data);
+    console.log(price[idPrice]);
     res.json(price[idPrice]);
   });
 });
