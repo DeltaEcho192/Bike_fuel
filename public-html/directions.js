@@ -56,6 +56,7 @@ function adrMaker() {
   var strEndAdr = endAdr.split(" ");
   var fnlEndAdr = strEndAdr.join("+");
   var url = route + port + "/direc/" + decodeURI(fnlStartAdr) + "/" + fnlEndAdr;
+  console.log(url);
   var ifrm = document.getElementById("mapDisp");
   ifrm.src =
     "https://www.google.com/maps/embed/v1/directions?origin=" +

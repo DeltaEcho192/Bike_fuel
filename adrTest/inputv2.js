@@ -1,4 +1,5 @@
 var count = 0;
+var fnl;
 
 function addRow() {
   var btn = document.createElement("INPUT");
@@ -9,11 +10,15 @@ function addRow() {
   initialize();
 }
 function postRow() {
+  var data = [];
   for (i = 0; i < count; i++) {
     var name = "test" + i;
     var currentName = document.getElementById(name).value;
-    console.log(currentName);
+    data.push(currentName);
   }
+  postData("http://localhost:9000/send", data)
+
+
 }
 
 function initialize() {
@@ -29,3 +34,25 @@ function initialize() {
     });
   }
 }
+
+
+// Example POST method implementation:
+async function postData(url, data) {
+  (async () => {
+    const rawResponse = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    const content = await rawResponse.json();
+
+    console.log(content);
+    fnl = content
+  })().then(function test(data) {
+    console.log(fnl)
+  });
+}
+
