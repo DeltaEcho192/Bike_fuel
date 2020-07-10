@@ -1,4 +1,5 @@
 var num = 3;
+require();
 
 function postCall() {
   for (i = 0; i < num; i++) {
