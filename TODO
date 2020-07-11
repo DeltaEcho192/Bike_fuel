@@ -1,11 +1,8 @@
 Add more bikes to the info list
 Docker compose
-Multiple Stops (Big project
-will need to make multiple requests and then consolidate the information
-Use new Page with changing amount of input fields
-    (
-        how to have changing amount of requests for the autocomplete api
-    )
-)
+Add the multiLine node script to main node Server.
 Custon bike pop up
 Login and saving trips
+{
+    database system
+}
