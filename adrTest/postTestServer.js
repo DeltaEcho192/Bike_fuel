@@ -26,10 +26,10 @@ app.post("/send", function (req, res) {
   arrTest = req.body;
   var bike = bikeID(arrTest[arrTest.length - 2])
   var price = priceID(arrTest[arrTest.length - 1])
-  console.log(price)
+  console.log(bike)
   var testValues = ["Cape Town, South Africa", "George, South Africa", "Durban, South Africa", "Johannesburg, South Africa", 1, 1]
-  var url = adrMaker(testValues)
-  calculations(url, bike[0], bike[1], price[1], price[0]).then((value) => res.json(JSON.stringify(value)))
+  var url = adrMaker(arrTest)
+  calculations(url, bike[0], bike[1], price[1], price[0], bike[2]).then((value) => res.json(JSON.stringify(value)))
 });
 
 function adrMaker(names) {
@@ -59,7 +59,7 @@ function adrMaker(names) {
   return fnlurl
 }
 
-async function calculations(fnlurl, bikeEff, bikeRange, price, symbol) {
+async function calculations(fnlurl, bikeEff, bikeRange, price, symbol, nameBike) {
   var distTotal = []
   var timeTotal = []
   var rtnValues = []
@@ -92,7 +92,7 @@ async function calculations(fnlurl, bikeEff, bikeRange, price, symbol) {
   } else {
     amtStops = Math.ceil(amtStops);
   }
-  rtnValues.push(distance, totalTime, fuelUsage, fnlCost, amtStops, symbol)
+  rtnValues.push(distance, totalTime, fuelUsage, fnlCost, amtStops, symbol, nameBike)
   return rtnValues
 }
 
@@ -101,8 +101,9 @@ function bikeID(bikeId) {
   bike = JSON.parse(bike);
   bikeData = bike[bikeId]
   fuelEff = bikeData[0].fuel_eff;
-  tankSize = bikeData[0].range
-  return [fuelEff, tankSize]
+  tankSize = bikeData[0].range;
+  bikeName = bikeData[0].name;
+  return [fuelEff, tankSize, bikeName]
 }
 function priceID(priceId) {
   var price = fs.readFileSync("price.json", 'utf8');

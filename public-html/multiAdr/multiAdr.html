@@ -1,0 +1,100 @@
+<html>
+
+<head>
+    <title>
+        Bike Fuel Calculator
+    </title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="multiAdr.css" />
+</head>
+
+<body>
+    <div class="heading">
+        <header>Bike Fuel App</header>
+    </div>
+    <div class="form-main">
+        <div class="form-group">
+            <div class="leftwrapper">
+                <div id="wrapperFlex">
+                    <input id="input0" class="autocomplete">
+                    <input id="input1" class="autocomplete">
+                </div>
+                <div class="buttons">
+                    <div class="rowBtn">
+                        <button onclick="addRow()">Add</button>
+                    </div>
+                    <div class="rmBtn">
+                        <button onclick="addTbl('mainTbl')">Remove</button>
+                    </div>
+                    <div class="calcBtn">
+                        <button onclick="postRow()">Calculate</button>
+                    </div>
+                </div>
+            </div>
+            <div class="rightWrapper">
+                <div class="selection">
+                    <select id="bikeList">
+                        <option value="1">Triumph Speedmaster</option>
+                        <option value="2">BMW GS 1200</option>
+                        <option value="3">BMW GS 1250</option>
+                        <option value="4">BMW GS 1250 Adv</option>
+                        <option value="5">BMW GS 800</option>
+                        <option value="6">BMW RnineT</option>
+                    </select>
+                    <select id="priceList">
+                        <option value="1">ZAR</option>
+                        <option value="2">CHF</option>
+                        <option value="3">USD</option>
+                    </select>
+                    <input type="checkbox" id="rtn" name="rtn" />
+                    <label id="rtnLbl">Include Return Journey</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="infoTbl" id="infoTbl">
+        <div class="infoWrapper">
+            <table id="mainTbl">
+                <tr>
+                    <th>Bike</th>
+                    <th id="bikeTbl"></th>
+                </tr>
+                <tr>
+                    <th>Start</th>
+                    <th id="startAdTbl"></th>
+                </tr>
+                <tr>
+                    <th>End</th>
+                    <th id="endAdTbl"></th>
+                </tr>
+                <tr>
+                    <th>Distance</th>
+                    <th id="distTbl"></th>
+                </tr>
+                <tr>
+                    <th>Time</th>
+                    <th id="timeTbl"></th>
+                </tr>
+                <tr>
+                    <th>Litres</th>
+                    <th id="lTbl"></th>
+                </tr>
+                <tr>
+                    <th>Cost</th>
+                    <th id="costTbl"></th>
+                </tr>
+                <tr>
+                    <th>Stops</th>
+                    <th id="stopsTbl"></th>
+                </tr>
+            </table>
+            <iframe id="mapDisp" width="650px" height="450" frameborder="0" style="border: 0;" allowfullscreen></iframe>
+        </div>
+    </div>
+</body>
+<script src="multiAdr.js"></script>
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIf-vJKm6y4vhqsCFdMkuRYIOjb8Q8rxM&libraries=places&callback=initialize"
+    async defer></script>
+
+</html>

@@ -20,7 +20,6 @@ function postRow() {
   data.push(1);
   postData("http://localhost:9000/send", data)
 
-
 }
 
 function initialize() {
