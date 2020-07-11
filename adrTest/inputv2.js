@@ -42,8 +42,10 @@ function initialize() {
 async function postData(url, data) {
   (async () => {
     const rawResponse = await fetch(url, {
+      mode: 'cors',
       method: 'POST',
       headers: {
+        'Access-Control-Allow-Origin': '*',
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },

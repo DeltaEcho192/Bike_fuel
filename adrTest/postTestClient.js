@@ -1,15 +1,20 @@
-function updateClient(postData) {
-  var miss = ["one second", "two Second"];
-  var yourUrl = "http://localhost:9000/test";
-  var xhr = new XMLHttpRequest();
-  xhr.open("POST", yourUrl, true);
-  xhr.setRequestHeader("Content-Type", "application/json");
-  xhr.send(
-    JSON.stringify({
-      test: miss,
-    })
-  );
+async function postData(url, data) {
+  (async () => {
+    const rawResponse = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    const content = await rawResponse.json();
+
+    console.log(content);
+    fnl = content
+  })();
 }
+postData("http://127.0.0.1:8500/testing", ["test"])
 function corsTest() {
   var url = "http://localhost:9000/sample/put/give/";
   var xmlHttp = new XMLHttpRequest();
