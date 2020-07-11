@@ -16,6 +16,8 @@ function postRow() {
     var currentName = document.getElementById(name).value;
     data.push(currentName);
   }
+  data.push(1);
+  data.push(1);
   postData("http://localhost:9000/send", data)
 
 
