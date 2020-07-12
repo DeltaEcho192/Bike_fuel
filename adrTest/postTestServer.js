@@ -29,7 +29,7 @@ app.post("/send", function (req, res) {
   console.log(bike)
   var testValues = ["Cape Town, South Africa", "George, South Africa", "Durban, South Africa", "Johannesburg, South Africa", 1, 1]
   var url = adrMaker(arrTest)
-  calculations(url, bike[0], bike[1], price[1], price[0], bike[2]).then((value) => res.json(JSON.stringify(value)))
+  calculations(url[0], bike[0], bike[1], price[1], price[0], bike[2], url[1]).then((value) => res.json(JSON.stringify(value)))
 });
 
 function adrMaker(names) {
@@ -56,10 +56,15 @@ function adrMaker(names) {
     "&destination=" +
     fnlEndAdr + fnlwaypoints +
     "&units=metric&key=AIzaSyAIf-vJKm6y4vhqsCFdMkuRYIOjb8Q8rxM";
-  return fnlurl
+  var embedUrl = "https://www.google.com/maps/embed/v1/directions?origin=" +
+    fnlStartAdr +
+    "&destination=" +
+    fnlEndAdr + fnlwaypoints +
+    " &key=AIzaSyAIf-vJKm6y4vhqsCFdMkuRYIOjb8Q8rxM";
+  return [fnlurl, embedUrl]
 }
 
-async function calculations(fnlurl, bikeEff, bikeRange, price, symbol, nameBike) {
+async function calculations(fnlurl, bikeEff, bikeRange, price, symbol, nameBike, embUrl) {
   var distTotal = []
   var timeTotal = []
   var rtnValues = []
@@ -92,7 +97,7 @@ async function calculations(fnlurl, bikeEff, bikeRange, price, symbol, nameBike)
   } else {
     amtStops = Math.ceil(amtStops);
   }
-  rtnValues.push(distance, totalTime, fuelUsage, fnlCost, amtStops, symbol, nameBike)
+  rtnValues.push(distance, totalTime, fuelUsage, fnlCost, amtStops, symbol, nameBike, embUrl)
   return rtnValues
 }
 

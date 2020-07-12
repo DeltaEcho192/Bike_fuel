@@ -1,4 +1,4 @@
-var count = 2;
+var count = 3;
 var tblCount = 1;
 var fnl;
 
@@ -29,14 +29,17 @@ function addRow() {
 }
 function removeRow() {
     try {
-        var inputs = document.getElementById("wrapperFlex");
-        console.log(inputs.childElementCount)
-        inputs.removeChild(inputs.lastChild)
-        var table = document.getElementById("mainTbl");
-        var rowCount = table.rows.length;
-        table.deleteRow(rowCount - 1)
-        tblCount--;
-        count--;
+        if (count > 3) {
+            var inputs = document.getElementById("wrapperFlex");
+            console.log(inputs.childElementCount)
+            inputs.removeChild(inputs.lastChild)
+            var table = document.getElementById("mainTbl");
+            var rowCount = table.rows.length;
+            table.deleteRow(rowCount - 1)
+            tblCount--;
+            count--;
+        }
+
     } catch (e) {
         alert(e);
     }
@@ -106,12 +109,14 @@ async function postData(url, data) {
         timeConverter(time)
         var litre = fnl[2]
         document.getElementById("lTbl").innerHTML = litre + " L";
-        var price = fnl[fnl.length - 2] + " " + fnl[3]
+        var price = fnl[fnl.length - 3] + " " + fnl[3]
         document.getElementById("costTbl").innerHTML = price;
         var stops = fnl[4]
         document.getElementById("stopsTbl").innerHTML = stops;
         var name = fnl[6]
         document.getElementById("bikeTbl").innerHTML = name;
+        var ifrm = document.getElementById("mapDisp");
+        ifrm.src = fnl[7]
     });
 }
 
