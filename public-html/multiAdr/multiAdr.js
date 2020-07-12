@@ -27,6 +27,20 @@ function addRow() {
         tblCount++;
     }
 }
+function removeRow() {
+    try {
+        var inputs = document.getElementById("wrapperFlex");
+        console.log(inputs.childElementCount)
+        inputs.removeChild(inputs.lastChild)
+        var table = document.getElementById("mainTbl");
+        var rowCount = table.rows.length;
+        table.deleteRow(rowCount - 1)
+        tblCount--;
+        count--;
+    } catch (e) {
+        alert(e);
+    }
+}
 
 function postRow() {
     var bikeV = document.getElementById("bikeList").value;
@@ -55,7 +69,6 @@ function postRow() {
 
 function initialize() {
     var acInputs = document.getElementsByClassName("autocomplete");
-    console.log(acInputs);
     for (var i = 0; i < acInputs.length; i++) {
         var autocomplete = new google.maps.places.Autocomplete(acInputs[i]);
         autocomplete.inputId = acInputs[i].id;
@@ -88,11 +101,11 @@ async function postData(url, data) {
         console.log(fnl)
         var distance = fnl[0] / 1000;
         console.log(fnl[0])
-        document.getElementById("distTbl").innerHTML = distance;
-        var time = (fnl[1] / 60) / 60;
-        document.getElementById("timeTbl").innerHTML = time;
+        distancePrinter(distance)
+        var time = parseFloat((fnl[1] / 60) / 60);
+        timeConverter(time)
         var litre = fnl[2]
-        document.getElementById("lTbl").innerHTML = litre;
+        document.getElementById("lTbl").innerHTML = litre + " L";
         var price = fnl[fnl.length - 2] + " " + fnl[3]
         document.getElementById("costTbl").innerHTML = price;
         var stops = fnl[4]
@@ -102,3 +115,22 @@ async function postData(url, data) {
     });
 }
 
+function timeConverter(timeDec) {
+    var temp = new Array();
+    console.log(timeDec)
+    temp = timeDec.toString().split('.')
+    var minutes = 100 / temp[1];
+    minutes = 60 / minutes;
+    console.log(minutes)
+    minutes = Math.round(minutes).toString();
+    console.log(minutes)
+    minutes = minutes.slice(0, -minutes.length + 2);
+    console.log(temp[0] + 'H : ' + minutes + " M");
+    document.getElementById("timeTbl").innerHTML = temp[0] + 'H : ' + minutes + " M";
+}
+
+function distancePrinter(distanceDec) {
+    var working = distanceDec.toString();
+    working = working.slice(0, -2);
+    document.getElementById("distTbl").innerHTML = working + " KM";
+}
