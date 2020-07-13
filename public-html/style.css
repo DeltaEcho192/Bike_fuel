@@ -6,7 +6,6 @@
 body {
   margin: 0;
   font-family: "Montserrat", sans-serif;
-  background-color: #e6e6e6;
 }
 .heading {
   background-color: #262626;
@@ -14,6 +13,7 @@ body {
   font-weight: bold;
   padding: 1em;
   margin: 0;
+  font-family: "Montserrat", sans-serif;
 
 }
 header{
@@ -34,7 +34,8 @@ ul {
 
 }
 li{
-  padding: 0 0.6em
+  padding: 0 0.6em;
+  font-family: "Montserrat", sans-serif;
 }
 
 .form-group {

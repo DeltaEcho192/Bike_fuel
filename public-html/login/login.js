@@ -25,8 +25,9 @@ async function authenticate() {
         window.alert("Incorrect Username and/or Password!")
     }
     else {
-        if (response.status == 200) {
+        if (response.status == 201) {
             window.alert("Successful Login")
+            window.location.replace("http://127.0.0.1:5500/public-html/multiAdr/multiAdr.html")
         }
 
     }

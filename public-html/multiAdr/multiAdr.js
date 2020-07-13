@@ -1,5 +1,5 @@
 var count = 3;
-var tblCount = 1;
+var tblCount = 2;
 var fnl;
 
 function addRow() {
@@ -138,4 +138,37 @@ function distancePrinter(distanceDec) {
     var working = distanceDec.toString();
     working = working.slice(0, -2);
     document.getElementById("distTbl").innerHTML = working + " KM";
+}
+
+function saveRoute() {
+    var bikeV = document.getElementById("bikeList").value;
+    var priceV = document.getElementById("priceList").value;
+    var startAdr = document.getElementById("startAdTbl").innerHTML;
+    var endAdTbl = document.getElementById("endAdTbl").innerHTML;
+    var distance = document.getElementById("distTbl").innerHTML;
+    var time = document.getElementById("timeTbl").innerHTML;
+    var litre = document.getElementById("lTbl").innerHTML;
+    var cost = document.getElementById("costTbl").innerHTML;
+    var stops = document.getElementById("stopsTbl").innerHTML;
+    var waypoints = []
+    if (tblCount > 1) {
+        for (c = 1; c < tblCount; c++) {
+            var wayName = "waypoint" + c
+            waypoints.push(document.getElementById(wayName).innerHTML)
+        }
+    }
+    var pushData = [bikeV, priceV, startAdr, endAdTbl, distance, time, litre, cost, stops, waypoints];
+    console.log(pushData)
+    checkLog();
+}
+function checkLog() {
+    var url = "http://localhost:9000/test"
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function () {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            var apireturn = xmlHttp.responseText;
+        console.log(apireturn)
+    };
+    xmlHttp.open("GET", url, true);
+    xmlHttp.send();
 }

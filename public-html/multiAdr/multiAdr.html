@@ -15,7 +15,7 @@
             <nav>
                 <ul>
                     <li><a href="../index.html">Single Route</a></li>
-                    <li><a href="./multiAdr/multiAdr.html">Login</a></li>
+                    <li><a href="../login/login.html">Login</a></li>
                 </ul>
             </nav>
 
@@ -95,9 +95,16 @@
                     <th>Stops</th>
                     <th id="stopsTbl"></th>
                 </tr>
+                <tr>
+                    <th>Waypoint 1</th>
+                    <th id="waypoint1"></th>
+                </tr>
             </table>
             <iframe id="mapDisp" width="650px" height="450" frameborder="0" style="border: 0;" allowfullscreen></iframe>
         </div>
+    </div>
+    <div class="saveBtn">
+        <button onclick="saveRoute()">Save</button>
     </div>
 </body>
 <script src="multiAdr.js"></script>

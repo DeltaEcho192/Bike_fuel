@@ -12,6 +12,8 @@ const { response } = require("express");
 
 const app = express();
 
+var sass;
+
 app.options('*', cors())
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -27,6 +29,7 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }));
+
 
 //
 //Single Route API Requests
@@ -183,18 +186,21 @@ var connection = mysql.createConnection({
 });
 
 app.post('/auth', function (request, response) {
+  sass = request.session;
   var username = request.body[0];
   var password = request.body[1];
   console.log("username" + username);
   console.log("password" + password);
   if (username && password) {
-    var sqlQuery = 'SELECT * FROM users WHERE usrname = "' + username + '" AND pswd = "' + password + '";';
+    var sqlQuery = 'SELECT userid FROM users WHERE usrname = "' + username + '" AND pswd = "' + password + '";';
     console.log(sqlQuery)
     connection.query(sqlQuery, function (error, results, fields) {
       console.log(results.length)
       if (results.length > 0) {
-        request.session.loggedin = true;
-        request.session.username = username;
+        sass.loggedin = true;
+        console.log(request.session.loggedin)
+        var useridSend = results[0].userid
+        sass.username = results[0].userid;
         response.status(201)
       } else {
         response.status(404)
@@ -207,7 +213,10 @@ app.post('/auth', function (request, response) {
   }
 });
 
-app.get('/home', function (request, response) {
+app.get('/test', function (request, response) {
+  sass = request.session;
+  console.log(sass.loggedin)
+  console.log(sass.username)
   if (request.session.loggedin) {
     response.send('Welcome back, ' + request.session.username + '!');
   } else {
@@ -216,9 +225,11 @@ app.get('/home', function (request, response) {
   response.end();
 });
 
+
 //
 //Sign up system
 //
+
 class Database {
   constructor(config) {
     this.connection = mysql.createConnection(config);
@@ -286,6 +297,7 @@ function insert(newId, username, password) {
   })
 
 }
+
 
 const PORT = process.env.PORT || 9000;
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
