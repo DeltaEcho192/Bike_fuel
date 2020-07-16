@@ -1,0 +1,126 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+}
+.heading {
+  background-color: #262626;
+  color: white;
+  font-weight: bold;
+  padding: 1em;
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+
+}
+header{
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+}
+a {
+  color: white;
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+
+}
+li{
+  padding: 0 0.6em;
+  font-family: "Montserrat", sans-serif;
+}
+
+.form-group {
+  padding: 1em;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+.form-control {
+  margin: 1em auto;
+  padding: 0.5em;
+  width: 350px;
+}
+.start {
+  text-align: center;
+}
+.end {
+  text-align: center;
+}
+.selection {
+  text-align: center;
+  display: inline-grid;
+  font-family: "Montserrat", sans-serif;
+}
+.calcBtn {
+  text-align: center;
+}
+
+button {
+  background-color: black;
+  font-family: "Montserrat", sans-serif;
+  color: white;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 17px;
+}
+h4 {
+  margin: 0;
+  padding: 0;
+}
+.infoTbl {
+  background-color: #bfbfbf;
+  padding-top: 1em;
+  text-align: center;
+}
+.infowrapper {
+  display: inline-flex;
+}
+.rightWrapper {
+  padding: 23;
+}
+table {
+  font-family: "Montserrat", sans-serif;
+  border-collapse: collapse;
+  height: 450px;
+  margin: 0 1em;
+}
+
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+.mapFrame {
+  padding: 50;
+}
+#bikeList {
+  padding: 5;
+  margin: 10;
+  margin-left: 0;
+}
+#priceList {
+  padding: 5;
+  margin: 10;
+  margin-left: 0;
+}
+option {
+  font-family: "Montserrat", sans-serif;
+}
+#rtnLbl {
+  font-family: "Montserrat", sans-serif;
+  border: none;
+}
