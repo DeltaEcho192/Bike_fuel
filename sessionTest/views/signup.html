@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Login Form Tutorial</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .signup-form {
+            width: 300px;
+            margin: 0 auto;
+            font-family: Tahoma, Geneva, sans-serif;
+        }
+
+        .signup-form h1 {
+            text-align: center;
+            color: #4d4d4d;
+            font-size: 24px;
+            padding: 20px 0 20px 0;
+        }
+
+        .signup-form input[type="password"],
+        .signup-form input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #dddddd;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        .signup-form input[type="submit"] {
+            width: 100%;
+            padding: 15px;
+            background-color: #535b63;
+            border: 0;
+            box-sizing: border-box;
+            cursor: pointer;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .heading {
+            background-color: #262626;
+            color: white;
+            font-weight: bold;
+            padding: 1em;
+            margin: 0;
+            font-family: "Montserrat", sans-serif;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+
+        }
+
+        li {
+            padding: 0 0.6em;
+            font-family: "Montserrat", sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="heading">
+        <header>
+            <a href="#">Sign Up</a>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="./login.html">Log In</a></li>
+                </ul>
+            </nav>
+
+        </header>
+
+
+    </div>
+    <div class="signup-form">
+        <h1>Sign Up Form</h1>
+        <input type="text" id="usrname" placeholder="Username" required>
+        <input type="password" id="pswd" placeholder="Password" required>
+        <input type="submit" onclick="signup()">
+
+    </div>
+</body>
+<script src="signup.js"></script>
+
+</html>

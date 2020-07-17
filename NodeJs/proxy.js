@@ -5,8 +5,14 @@ const bent = require('bent')
 const fs = require("fs");
 const getJSON = bent('json')
 var cors = require('cors')
+var path = require('path');
+var mysql = require('mysql');
+var session = require('express-session');
+const { response } = require("express");
 
 const app = express();
+
+var sass;
 
 app.options('*', cors())
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -17,6 +23,17 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   next();
 });
+
+app.use(session({
+  secret: 'secret',
+  resave: true,
+  saveUninitialized: true
+}));
+
+
+//
+//Single Route API Requests
+//
 
 app.get("/direc/:start/:end", (req, res) => {
   var fnlurl =
@@ -54,6 +71,9 @@ app.get("/price/:id", (req, res) => {
   });
 });
 
+//
+//Multi Route API Requests
+//
 
 app.post("/send", function (req, res) {
   console.log("receiving data ...");
@@ -152,6 +172,130 @@ function priceID(priceId) {
   var symbol = priceData[0].symbol
   var priceFnl = priceData[0].price
   return [symbol, priceFnl]
+}
+
+//
+//Login System
+//
+
+var connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: 'xxmaster',
+  database: 'bike_fuel'
+});
+
+app.post('/auth', function (request, response) {
+  sass = request.session;
+  var username = request.body[0];
+  var password = request.body[1];
+  console.log("username" + username);
+  console.log("password" + password);
+  if (username && password) {
+    var sqlQuery = 'SELECT userid FROM users WHERE usrname = "' + username + '" AND pswd = "' + password + '";';
+    console.log(sqlQuery)
+    connection.query(sqlQuery, function (error, results, fields) {
+      console.log(results.length)
+      if (results.length > 0) {
+        sass.loggedin = true;
+        console.log(request.session.loggedin)
+        var useridSend = results[0].userid
+        sass.username = results[0].userid;
+        response.status(201)
+      } else {
+        response.status(404)
+      }
+      response.end();
+    });
+  } else {
+    response.send('Please enter Username and Password!');
+    response.end();
+  }
+});
+
+app.get('/test', function (request, response) {
+  sass = request.session;
+  console.log(sass.loggedin)
+  console.log(sass.username)
+  if (request.session.loggedin) {
+    response.send('Welcome back, ' + request.session.username + '!');
+  } else {
+    response.send('Please login to view this page!');
+  }
+  response.end();
+});
+
+
+//
+//Sign up system
+//
+
+class Database {
+  constructor(config) {
+    this.connection = mysql.createConnection(config);
+  }
+  query(sql, args) {
+    return new Promise((resolve, reject) => {
+      this.connection.query(sql, args, (err, rows) => {
+        if (err)
+          return reject(err);
+        resolve(rows);
+      });
+    });
+  }
+  close() {
+    return new Promise((resolve, reject) => {
+      this.connection.end(err => {
+        if (err)
+          return reject(err);
+        resolve();
+      });
+    });
+  }
+}
+
+
+app.post('/signup', function (request, response) {
+  var username = request.body[0];
+  var password = request.body[1];
+  console.log(username);
+  console.log(password)
+  if (username && password) {
+    var sqlQuery = 'SELECT * FROM users WHERE usrname = "' + username + '" AND pswd = "' + password + '";';
+
+    console.log(sqlQuery)
+    connection.query(sqlQuery, function (error, results, fields) {
+      if (results.length > 0) {
+        response.status(406)
+      } else {
+        database = new Database({
+          host: 'localhost',
+          user: 'root',
+          password: 'xxmaster',
+          database: 'bike_fuel'
+        })
+        var useridQuery = "SELECT userid FROM users ORDER BY userid DESC LIMIT 1"
+        database.query(useridQuery).then(rows => insert(rows[0].userid, username, password))
+        console.log("Entering user")
+
+      }
+      response.end();
+    });
+  } else {
+    response.send('Please enter Username and Password!');
+    response.end();
+  }
+});
+
+function insert(newId, username, password) {
+  console.log(newId)
+  newId = newId + 1;
+  var sqlInsert = 'INSERT INTO users VALUES (' + newId + ',"' + username + '","' + password + '");';
+  console.log(sqlInsert)
+  connection.query(sqlInsert, function (error, results) {
+    console.log("User entered")
+  })
+
 }
 
 

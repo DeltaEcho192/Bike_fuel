@@ -1,0 +1,23 @@
+{
+  "1": [
+    {
+      "curr": "ZAR",
+      "symbol": "R",
+      "price": "13.2"
+    }
+  ],
+  "2": [
+    {
+      "curr": "CHF",
+      "symbol": "Fr",
+      "price": "1.32"
+    }
+  ],
+  "3": [
+    {
+      "curr": "USD",
+      "symbol": "$",
+      "price": "0.665"
+    }
+  ]
+}

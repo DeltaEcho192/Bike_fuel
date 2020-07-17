@@ -140,7 +140,7 @@ function distancePrinter(distanceDec) {
     document.getElementById("distTbl").innerHTML = working + " KM";
 }
 
-function saveRoute() {
+async function saveRoute() {
     var bikeV = document.getElementById("bikeList").value;
     var priceV = document.getElementById("priceList").value;
     var startAdr = document.getElementById("startAdTbl").innerHTML;
@@ -159,7 +159,22 @@ function saveRoute() {
     }
     var pushData = [bikeV, priceV, startAdr, endAdTbl, distance, time, litre, cost, stops, waypoints];
     console.log(pushData)
-    checkLog();
+
+    var url = "http://localhost:9000/save"
+    data = JSON.stringify(pushData)
+    console.log(data)
+    const response = await fetch(url, {
+        method: 'POST',
+        mode: "cors",
+        redirect: 'follow',
+        headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'Accept': 'application/json'
+        },
+        body: data
+    });
+    console.log(response.status)
 }
 function checkLog() {
     var url = "http://localhost:9000/test"

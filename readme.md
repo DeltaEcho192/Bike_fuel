@@ -18,7 +18,7 @@ Basic Function:
 - Node JS
 
 ## Future Additions:
-- Being able to add multiple stops.
+- Login System and being able to save routes.
 
 ## Instalations
 To run you first have to have docker installed and running on your system.

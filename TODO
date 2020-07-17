@@ -1,9 +1,6 @@
 Add more bikes to the info list
 Docker compose
-Add the multiLine node script to main node Server.
-Google map embed
 Custon bike pop up
-Login and saving trips
-{
-    database system
-}
+Organise all the files and folders for final version
+User Page with user data and abality of deleting saved trips and when clicked on display trip
+setup documentaion for all the sql stuff
