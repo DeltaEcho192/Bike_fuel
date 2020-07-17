@@ -255,6 +255,7 @@ router.post('/auth', function (request, response) {
 
 router.post('/save', function (request, response) {
     if (request.session.key) {
+        var nullCounter = 5
         console.log("Session User ID after " + request.session.key)
         var userId = request.session.key
         var bikeName = request.body[0]
@@ -267,11 +268,26 @@ router.post('/save', function (request, response) {
         var cost = request.body[7]
         var stops = request.body[8]
         var waypoints = request.body[9]
+        var baseSql = "INSERT INTO routes VALUES (" + userId + "," + bikeName + "," + price + ',"' + startAdr + '","' + endAdTbl + '","' + distance + '","' + time + '","' + litre + '","' + cost + '","' + stops;
+        if (waypoints.length > 0) {
+            for (v = 0; v < waypoints.length; v++) {
+                baseSql = baseSql + '","' + waypoints[v]
+                nullCounter--;
+            }
+            baseSql = baseSql + '"'
+            for (b = 0; b < nullCounter; b++) {
+                baseSql = baseSql + ',' + null
+            }
+            baseSql = baseSql + ');'
+        }
+        else {
+            baseSql = "INSERT INTO routes VALUES (" + userId + "," + bikeName + "," + price + ',"' + startAdr + '","' + endAdTbl + '","' + distance + '","' + time + '","' + litre + '","' + cost + '","' + stops + '",' + null + ',' + null + ',' + null + ',' + null + ',' + null + ');';
+
+        }
         console.log(userId)
         //console.log(userId + " " + bikeName + " " + price + " " + startAdr + " " + endAdTbl + " " + distance + " " + time + " " + litre + " " + cost + " " + stops + " " + waypoints)
-        var sqlQuery = "INSERT INTO routes VALUES (" + userId + "," + bikeName + "," + price + ',"' + startAdr + '","' + endAdTbl + '","' + distance + '","' + time + '","' + litre + '","' + cost + '","' + stops + '",' + null + ',' + null + ',' + null + ',' + null + ',' + null + ');';
-        console.log(sqlQuery)
-        connection.query(sqlQuery, function (error, results, fields) {
+        console.log(baseSql)
+        connection.query(baseSql, function (error, results, fields) {
             if (error) throw error;
             console.log("1 record inserted");
             response.status(201);

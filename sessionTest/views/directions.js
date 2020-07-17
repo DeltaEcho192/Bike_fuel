@@ -150,6 +150,36 @@ function stopCheck(distance) {
     document.getElementById("stopsTbl").innerHTML = amtStops;
 }
 
+async function saveRoute() {
+    var bikeV = document.getElementById("bikeList").value;
+    var priceV = document.getElementById("priceList").value;
+    var startAdr = document.getElementById("startAdTbl").innerHTML;
+    var endAdTbl = document.getElementById("endAdTbl").innerHTML;
+    var distance = document.getElementById("distTbl").innerHTML;
+    var time = document.getElementById("timeTbl").innerHTML;
+    var litre = document.getElementById("lTbl").innerHTML;
+    var cost = document.getElementById("costTbl").innerHTML;
+    var stops = document.getElementById("stopsTbl").innerHTML;
+    var pushData = [bikeV, priceV, startAdr, endAdTbl, distance, time, litre, cost, stops];
+    console.log(pushData)
+
+    var url = "http://localhost:9000/save"
+    data = JSON.stringify(pushData)
+    console.log(data)
+    const response = await fetch(url, {
+        method: 'POST',
+        mode: "cors",
+        redirect: 'follow',
+        headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'Accept': 'application/json'
+        },
+        body: data
+    });
+    console.log(response.status)
+}
+
 function rtn(dispDist, time) {
     var distW = dispDist.split(" ");
     var timeW = time.split(" ");
