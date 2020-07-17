@@ -20,5 +20,6 @@ async function signup() {
     });
     console.log(response)
     window.alert(response.status)
+    window.location.href = response.url;
 }
 

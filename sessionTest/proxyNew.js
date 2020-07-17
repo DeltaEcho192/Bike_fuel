@@ -10,6 +10,9 @@ var mysql = require('mysql');
 var session = require('express-session');
 const { response } = require("express");
 const router = express.Router();
+const redis = require('redis');
+const redisStore = require('connect-redis')(session);
+const client = redis.createClient();
 
 const app = express();
 
@@ -26,7 +29,11 @@ app.use((req, res, next) => {
 });
 
 
-app.use(session({ secret: 'ssshhhhh', saveUninitialized: true, resave: true }));
+app.use(session({
+    secret: 'ssshhhhh',
+    store: new redisStore({ host: 'localhost', port: 6379, client: client, ttl: 260 }),
+    saveUninitialized: true, resave: true
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/views'));
@@ -42,7 +49,6 @@ app.use(session({
 //Single Route API Requests
 //
 router.get('/', (req, res) => {
-    sess = req.session;
     if (sess.email) {
         return res.redirect('/admin');
     }
@@ -50,15 +56,21 @@ router.get('/', (req, res) => {
 });
 
 router.get('/multiAdr', (req, res) => {
-    sess = req.session;
-    if (sess.username) {
-        console.log("Session User ID after" + sess.username)
+
+    if (req.session.key) {
+        console.log("Session User ID after" + req.session.key["userid"])
     }
-    res.sendFile(__dirname + '/views/multiAdr.html')
+    res.redirect('multiAdr.html')
 });
 
 router.get('/login', (req, res) => {
-    res.sendFile(__dirname + '/views/login.html')
+    res.redirect('login.html')
+
+})
+
+router.get('/loginCheck', (req, res) => {
+    res.send("Okay");
+    console.log(req.session.key)
 
 })
 
@@ -215,7 +227,6 @@ var connection = mysql.createConnection({
 
 
 router.post('/auth', function (request, response) {
-    sass = request.session;
     var username = request.body[0];
     var password = request.body[1];
     console.log("username" + username);
@@ -228,8 +239,8 @@ router.post('/auth', function (request, response) {
             if (results.length > 0) {
                 request.session.loggedin = true;
                 console.log(results[0].userid)
-                request.session.username = results[0].userid;
-                response.redirect('/multiAdr');
+                request.session.key = results[0].userid;
+                response.redirect('/');
             } else {
                 response.send(404)
                 console.log("not correct")
@@ -241,19 +252,11 @@ router.post('/auth', function (request, response) {
         response.end();
     }
 });
-app.get('/home', function (request, response) {
-    if (request.session.loggedin) {
-        response.send('Welcome back, ' + request.session.username + '!');
-    } else {
-        response.send('Please login to view this page!');
-    }
-    response.end();
-});
+
 router.post('/save', function (request, response) {
-    sass = request.session;
-    if (sess.username) {
-        console.log("Session User ID after" + sess.username)
-        var userId = sess.username;
+    if (request.session.key) {
+        console.log("Session User ID after " + request.session.key)
+        var userId = request.session.key
         var bikeName = request.body[0]
         var price = request.body[1]
         var startAdr = request.body[2]
@@ -347,6 +350,7 @@ app.post('/signup', function (request, response) {
                 var useridQuery = "SELECT userid FROM users ORDER BY userid DESC LIMIT 1"
                 database.query(useridQuery).then(rows => insert(rows[0].userid, username, password))
                 console.log("Entering user")
+                response.redirect('/login')
 
             }
             response.end();

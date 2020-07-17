@@ -45,21 +45,37 @@ function apiCall() {
 }
 
 function multiAdr() {
-    var url = "localhost:9000/multiAdr"
+    var url = "http://localhost:9000/multiAdr"
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function () {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
             console.log("sent")
+        console.log(xmlHttp.responseURL)
+
     };
     xmlHttp.open("GET", url, true);
     xmlHttp.send();
 }
 function login() {
-    var url = "localhost:9000/login"
+    var url = "http://localhost:9000/login"
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function () {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
             console.log("sent")
+        console.log(xmlHttp.responseURL)
+
+    };
+    xmlHttp.open("GET", url, true);
+    xmlHttp.send();
+}
+function loginCheck() {
+    var url = "http://localhost:9000/loginCheck"
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function () {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            console.log("sent")
+        console.log(xmlHttp.responseText)
+
     };
     xmlHttp.open("GET", url, true);
     xmlHttp.send();

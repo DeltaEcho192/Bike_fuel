@@ -1,12 +1,14 @@
 Add more bikes to the info list
 Docker compose
 Custon bike pop up
-Login and saving trips
+Fix all the buttons for different webistes in the node server
 {
-    database system
+    sign up nav bar
+    login redirect to single route
 }
-back buttons
-learn about express sessions
-Create Database for journey
-Create save button and function to save journey
+Single route SQL save
+Waypoint system for multiadr sql
+Fix login and distribution of files
+Organise all the files and folders for final version
+User Page with user data and abality of deleting saved trips and when clicked on display trip
 setup documentaion for all the sql stuff
