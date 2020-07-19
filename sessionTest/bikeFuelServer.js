@@ -31,7 +31,10 @@ app.use((req, res, next) => {
 
 app.use(session({
     secret: 'ssshhhhh',
-    store: new redisStore({ host: 'localhost', port: 6379, client: client, ttl: 260 }),
+    store: new redisStore({
+        host: 'localhost', port: 6379, client: client, ttl: 260,
+        saveUninitialized: true, resave: true
+    }),
     saveUninitialized: true, resave: true
 }));
 app.use(bodyParser.json());
@@ -231,7 +234,8 @@ router.post('/auth', function (request, response) {
     var password = request.body[1];
     console.log("username" + username);
     console.log("password" + password);
-    if (username && password) {
+    console.log(connection.state)
+    if (username && password || connection.state == "connected") {
         var sqlQuery = 'SELECT userid FROM users WHERE usrname = "' + username + '" AND pswd = "' + password + '";';
         console.log(sqlQuery)
         connection.query(sqlQuery, function (error, results, fields) {
