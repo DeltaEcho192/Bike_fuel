@@ -68,13 +68,18 @@ function login() {
     xmlHttp.open("GET", url, true);
     xmlHttp.send();
 }
-function loginCheck() {
-    var url = "http://localhost:9000/loginCheck"
+function user() {
+    var url = "http://localhost:9000/userPage"
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function () {
-        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
             console.log("sent")
-        console.log(xmlHttp.responseText)
+            var changeUrl = xmlHttp.responseURL
+            console.log(changeUrl)
+            location.href = changeUrl
+        }
+
+        //location.href = xmlHttp.responseURL
 
     };
     xmlHttp.open("GET", url, true);
@@ -151,7 +156,7 @@ function stopCheck(distance) {
 }
 
 async function saveRoute() {
-    var bikeV = document.getElementById("bikeList").value;
+    var bikeV = document.getElementById("bikeTbl").innerHTML;
     var priceV = document.getElementById("priceList").value;
     var startAdr = document.getElementById("startAdTbl").innerHTML;
     var endAdTbl = document.getElementById("endAdTbl").innerHTML;
@@ -160,7 +165,8 @@ async function saveRoute() {
     var litre = document.getElementById("lTbl").innerHTML;
     var cost = document.getElementById("costTbl").innerHTML;
     var stops = document.getElementById("stopsTbl").innerHTML;
-    var pushData = [bikeV, priceV, startAdr, endAdTbl, distance, time, litre, cost, stops];
+    var waypoints = []
+    var pushData = [bikeV, priceV, startAdr, endAdTbl, distance, time, litre, cost, stops, waypoints];
     console.log(pushData)
 
     var url = "http://localhost:9000/save"

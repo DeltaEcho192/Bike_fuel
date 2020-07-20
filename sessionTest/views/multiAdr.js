@@ -141,7 +141,7 @@ function distancePrinter(distanceDec) {
 }
 
 async function saveRoute() {
-    var bikeV = document.getElementById("bikeList").value;
+    var bikeV = document.getElementById("bikeTbl").innerHTML;
     var priceV = document.getElementById("priceList").value;
     var startAdr = document.getElementById("startAdTbl").innerHTML;
     var endAdTbl = document.getElementById("endAdTbl").innerHTML;
@@ -175,6 +175,7 @@ async function saveRoute() {
         body: data
     });
     console.log(response.status)
+    window.alert(response.status)
 }
 function checkLog() {
     var url = "http://localhost:9000/test"

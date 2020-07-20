@@ -124,3 +124,7 @@ option {
   font-family: "Montserrat", sans-serif;
   border: none;
 }
+.buttons{
+  display: flex;
+  justify-content: space-evenly;
+}

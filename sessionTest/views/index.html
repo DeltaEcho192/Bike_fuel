@@ -16,7 +16,7 @@
                 <ul>
                     <li><a href="./multiAdr.html">Multi Adr</a></li>
                     <li><a href="./login.html">Login</a></li>
-                    <li><a onclick="loginCheck()">check</a></li>
+                    <li><a onclick="user()">User</a></li>
                 </ul>
             </nav>
 
@@ -40,6 +40,9 @@
                 <div class="buttons">
                     <div class="calcBtn">
                         <button onclick="apiCall()">Calculate</button>
+                    </div>
+                    <div class="saveBtn">
+                        <button onclick="saveRoute()">Save</button>
                     </div>
                 </div>
             </div>
@@ -103,9 +106,7 @@
             <iframe id="mapDisp" width="650px" height="450" frameborder="0" style="border: 0;" allowfullscreen></iframe>
         </div>
     </div>
-    <div class="saveBtn">
-        <button onclick="saveRoute()">Save</button>
-    </div>
+
 </body>
 <script src="directions.js"></script>
 <script

@@ -7,6 +7,7 @@
 }
 input{
     width: 250px;
+    padding: 0.5em;
 }
 #wrapperFlex{
     margin: 1em;
@@ -20,7 +21,7 @@ input{
 body {
   margin: 0;
   font-family: "Montserrat", sans-serif;
-  background-color: #e6e6e6;
+  background-color: white;
 }
 .heading {
   background-color: #262626;
@@ -141,4 +142,7 @@ option {
 .buttons{
     display: flex;
     justify-content: space-evenly;
+}
+.saveBtn{
+  text-align: center;
 }

@@ -1,0 +1,108 @@
+body {
+    margin: 0;
+
+}
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.heading {
+    background-color: #262626;
+    color: white;
+    font-weight: bold;
+    padding: 1em;
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: auto;
+}
+
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+
+}
+
+li {
+    padding: 0 0.6em;
+    font-family: "Montserrat", sans-serif;
+}
+.main-wrapper{
+    text-align: center;
+    margin: auto 300 10;
+    margin-top: 10;
+}
+
+p{
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 10;
+    background-color: white;
+}
+.info{
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+.main_page{
+    margin-top: 40px;
+}
+main {
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    align-items: center;
+  }
+  
+  .table-wrapper {
+    overflow: auto;
+      max-width: 90%;
+      margin: auto;
+      background:
+          linear-gradient(to right, white 30%, rgba(255,255,255,0)),
+          linear-gradient(to right, rgba(255,255,255,0), white 70%) 0 100%,
+          radial-gradient(farthest-side at 0% 50%, rgba(0,0,0,.2), rgba(0,0,0,0)),
+          radial-gradient(farthest-side at 100% 50%, rgba(0,0,0,.2), rgba(0,0,0,0)) 0 100%;
+      background-repeat: no-repeat;
+      background-color: white;
+      background-size: 40px 100%, 40px 100%, 14px 100%, 14px 100%;
+    background-position: 0 0, 100%, 0 0, 100%;
+      background-attachment: local, local, scroll, scroll;
+  }
+  
+  tr {
+    border-bottom: 1px solid;
+  }
+  
+  th {
+    background-color: #555;
+    color: #fff;
+  }
+  
+  th,
+  td {
+    text-align: left;
+    padding: 0.5em 1em;
+    white-space: nowrap;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  #searchInput{
+    border: 1px solid;
+    font-size: initial;
+    margin-bottom: 1em;
+    padding: 0.25em;
+  }
+  .searchbar{
+      margin-top: 30px;
+      text-align: center;
+  }

@@ -76,6 +76,15 @@ router.get('/loginCheck', (req, res) => {
     console.log(req.session.key)
 
 })
+router.get('/userPage', (req, res) => {
+    if (req.session.key) {
+        console.log(req.session.key)
+        res.redirect('user.html')
+    }
+    else {
+        res.status(405)
+    }
+})
 
 
 app.get("/direc/:start/:end", (req, res) => {
@@ -272,7 +281,7 @@ router.post('/save', function (request, response) {
         var cost = request.body[7]
         var stops = request.body[8]
         var waypoints = request.body[9]
-        var baseSql = "INSERT INTO routes VALUES (" + userId + "," + bikeName + "," + price + ',"' + startAdr + '","' + endAdTbl + '","' + distance + '","' + time + '","' + litre + '","' + cost + '","' + stops;
+        var baseSql = "INSERT INTO routes VALUES (" + userId + ',"' + bikeName + '","' + startAdr + '","' + endAdTbl + '","' + distance + '","' + time + '","' + litre + '","' + cost + '","' + stops;
         if (waypoints.length > 0) {
             for (v = 0; v < waypoints.length; v++) {
                 baseSql = baseSql + '","' + waypoints[v]
@@ -285,7 +294,7 @@ router.post('/save', function (request, response) {
             baseSql = baseSql + ');'
         }
         else {
-            baseSql = "INSERT INTO routes VALUES (" + userId + "," + bikeName + "," + price + ',"' + startAdr + '","' + endAdTbl + '","' + distance + '","' + time + '","' + litre + '","' + cost + '","' + stops + '",' + null + ',' + null + ',' + null + ',' + null + ',' + null + ');';
+            baseSql = "INSERT INTO routes VALUES (" + userId + ',"' + bikeName + '","' + startAdr + '","' + endAdTbl + '","' + distance + '","' + time + '","' + litre + '","' + cost + '","' + stops + '",' + null + ',' + null + ',' + null + ',' + null + ',' + null + ');';
 
         }
         console.log(userId)
@@ -392,6 +401,21 @@ function insert(newId, username, password) {
 
 }
 
+//
+// User Page
+//
+
+router.get('/userRoutes', function (request, response) {
+    if (request.session.key) {
+        var userId = request.session.key;
+        var limit = 5;
+        var sqlQuery = 'SELECT  * FROM routes WHERE userid = ' + userId + ' limit 5;';
+        console.log(sqlQuery)
+        connection.query(sqlQuery, function (error, results, fields) {
+            response.json(results)
+        });
+    }
+})
 app.use('/', router);
 const PORT = process.env.PORT || 9000;
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
