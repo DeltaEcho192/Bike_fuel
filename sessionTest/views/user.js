@@ -3,20 +3,29 @@ function addRow(routeData) {
     for (i = 0; i < routeData.length; i++) {
         console.log(routeData[i])
         var currentData = routeData[i]
+        var rowObj = document.createElement("tr");
+        rowObj.id = "result" + i;
+        document.getElementById("resultTbl").appendChild(rowObj);
+        bikeID = 0;
         Object.entries(currentData).forEach(
             ([key, value]) => {
-                if (value != null) {
-                    var field = document.createElement("P");
-                    field.className = "datafield";
-                    field.innerHTML = value
-                    var fieldName = "info" + (i + 1)
-                    console.log(fieldName)
-                    document.getElementById(fieldName).appendChild(field);
+                if (bikeID == 0) {
+                    console.log(value)
+                    bikeID++;
                 }
                 else {
-                    console.log("Value was null")
+                    if (value != null) {
+                        var field = document.createElement("td");
+                        field.className = "datafield";
+                        field.innerHTML = value
+                        var fieldName = "result" + i
+                        console.log(fieldName)
+                        document.getElementById(fieldName).appendChild(field);
+                    }
+                    else {
+                        console.log("Value was null")
+                    }
                 }
-
             }
         );
 

@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="./user.css" />
 </head>
 
-<body>
+<body onload="rowFiller()">
     <div class="heading">
         <header>
             <a href="#">User</a>
@@ -18,31 +18,27 @@
         </header>
     </div>
     <div class="main_page">
-        <div class="main-wrapper">
-            <div class="column1">
-                <div class="header">
-                    <h2>Trip 1</h2>
-                </div>
-                <div id="info1" class="info">
-                </div>
-            </div>
-            <div class="column2">
-                <div class="header">
-                    <h2>Trip 2</h2>
-                </div>
-                <div id="info2" class="info">
-                </div>
-            </div>
-            <div class="column3">
-                <div class="header">
-                    <h2>Trip 3</h2>
-                </div>
-                <div id="info3" class="info">
-                </div>
-            </div>
-        </div>
-        <div class="btn">
-            <button onclick="rowFiller()">Add</button>
+        <div id="main-wrapper" class="table-wrapper">
+            <table id="filterTable">
+                <thead>
+                    <tr>
+                        <th data-type="text">Bike</th>
+                        <th data-type="text">Start Address</th>
+                        <th data-type="text">End Address</th>
+                        <th data-type="text">Distance</th>
+                        <th data-type="text">Time</th>
+                        <th data-type="text">Fuel Amt</th>
+                        <th data-type="text">Fuel Cost</th>
+                        <th data-type="number">Stops</th>
+                        <th data-type="text">Waypoint 1</th>
+                        <th data-type="text">Waypoint 2</th>
+                        <th data-type="text">Waypoint 3</th>
+                    </tr>
+                </thead>
+                <tbody id="resultTbl">
+
+                </tbody>
+            </table>
         </div>
     </div>
 </body>
