@@ -52,7 +52,7 @@ p{
     grid-template-columns: auto auto auto;
 }
 .main_page{
-    margin-top: 50px;
+    margin-top: 40px;
 }
 main {
     display: flex;
@@ -95,4 +95,14 @@ main {
   
   .hidden {
     display: none;
+  }
+  #searchInput{
+    border: 1px solid;
+    font-size: initial;
+    margin-bottom: 1em;
+    padding: 0.25em;
+  }
+  .searchbar{
+      margin-top: 30px;
+      text-align: center;
   }
