@@ -2,5 +2,9 @@ Add more bikes to the info list
 Docker compose
 Custon bike pop up
 URI encodeing
-Delete function for records
+Check make sure when save all values are filled
+Combine Single and Multi Route
+Log out btn
+Moveing all the Datbase work to firebase
+Maybe Change auth to firebase
 setup documentaion for all the sql stuff

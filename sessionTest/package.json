@@ -16,7 +16,8 @@
     "package.json": "^2.0.1",
     "path": "^0.12.7",
     "redis": "^3.0.2",
-    "request": "^2.88.2"
+    "request": "^2.88.2",
+    "tabulator-tables": "^4.7.2"
   },
   "keywords": [],
   "author": "",

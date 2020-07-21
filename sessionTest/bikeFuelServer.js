@@ -281,7 +281,7 @@ router.post('/save', function (request, response) {
         var cost = request.body[7]
         var stops = request.body[8]
         var waypoints = request.body[9]
-        var baseSql = "INSERT INTO routes VALUES (" + userId + ',"' + bikeName + '","' + startAdr + '","' + endAdTbl + '","' + distance + '","' + time + '","' + litre + '","' + cost + '","' + stops;
+        var baseSql = "INSERT INTO routes (userid,bike,startAdr,endAdr,distance,timevar,litre,cost,stops,waypoint1,waypoint2,waypoint3,waypoint4,waypoint5) VALUES (" + userId + ',"' + bikeName + '","' + startAdr + '","' + endAdTbl + '","' + distance + '","' + time + '","' + litre + '","' + cost + '","' + stops;
         if (waypoints.length > 0) {
             for (v = 0; v < waypoints.length; v++) {
                 baseSql = baseSql + '","' + waypoints[v]
@@ -294,7 +294,7 @@ router.post('/save', function (request, response) {
             baseSql = baseSql + ');'
         }
         else {
-            baseSql = "INSERT INTO routes VALUES (" + userId + ',"' + bikeName + '","' + startAdr + '","' + endAdTbl + '","' + distance + '","' + time + '","' + litre + '","' + cost + '","' + stops + '",' + null + ',' + null + ',' + null + ',' + null + ',' + null + ');';
+            baseSql = "INSERT INTO routes (userid,bike,startAdr,endAdr,distance,timevar,litre,cost,stops,waypoint1,waypoint2,waypoint3,waypoint4,waypoint5) VALUES (" + userId + ',"' + bikeName + '","' + startAdr + '","' + endAdTbl + '","' + distance + '","' + time + '","' + litre + '","' + cost + '","' + stops + '",' + null + ',' + null + ',' + null + ',' + null + ',' + null + ');';
 
         }
         console.log(userId)
@@ -413,6 +413,18 @@ router.get('/userRoutes', function (request, response) {
         console.log(sqlQuery)
         connection.query(sqlQuery, function (error, results, fields) {
             response.json(results)
+        });
+    }
+})
+
+router.get('/delRoute/:id', function (req, res) {
+    if (req.session.key) {
+        var userId = req.session.key;
+        var routeID = req.params.id;
+        var sqlQuery = 'delete FROM routes where userid =' + userId + " and routeID = " + routeID + ";";
+        console.log(sqlQuery)
+        connection.query(sqlQuery, function (error, results, fields) {
+            res.json(results)
         });
     }
 })

@@ -2,6 +2,7 @@
 
 <head>
     <meta charset="UTF-8" />
+    <link href="https://unpkg.com/tabulator-tables@4.7.2/dist/css/tabulator.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./user.css" />
 </head>
 
@@ -19,38 +20,21 @@
     </div>
     <div class="searchbar">
         <label>
-            <span>Search:</span>
+            <span style="font-family: 'Montserrat', sans-serif;">Search:</span>
             <input placeholder="Enter search term" type="search" id="searchInput" onkeyup="search()">
         </label>
-    </div>
-    <div class="main_page">
-
-        <div id="main-wrapper" class="table-wrapper">
-            <table id="filterTable">
-                <thead>
-                    <tr>
-                        <th data-type="text">Bike</th>
-                        <th data-type="text">Start Address</th>
-                        <th data-type="text">End Address</th>
-                        <th data-type="text">Distance</th>
-                        <th data-type="text">Time</th>
-                        <th data-type="text">Fuel Amt</th>
-                        <th data-type="text">Fuel Cost</th>
-                        <th data-type="number">Stops</th>
-                        <th data-type="text">Waypoint 1</th>
-                        <th data-type="text">Waypoint 2</th>
-                        <th data-type="text">Waypoint 3</th>
-                    </tr>
-                </thead>
-                <tbody id="resultTbl">
-
-                </tbody>
-            </table>
+        <div class="btn-Wrapper">
+            <button onclick="deleteRecord()">Delete</button>
         </div>
     </div>
+    <div class="main_page">
+        <div id="example-table"></div>
+    </div>
+
 
 
 </body>
 <script src="user.js"></script>
+<script type="text/javascript" src="https://unpkg.com/tabulator-tables@4.7.2/dist/js/tabulator.min.js"></script>
 
 </html>
