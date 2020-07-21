@@ -86,43 +86,6 @@ router.get('/userPage', (req, res) => {
     }
 })
 
-
-app.get("/direc/:start/:end", (req, res) => {
-    var fnlurl =
-        "https://maps.googleapis.com/maps/api/directions/json?origin=" +
-        encodeURI(req.params.start) +
-        "&destination=" +
-        encodeURI(req.params.end) +
-        "&units=metric&key=AIzaSyAIf-vJKm6y4vhqsCFdMkuRYIOjb8Q8rxM";
-    request({ url: fnlurl }, (error, response, body) => {
-        if (error || response.statusCode !== 200) {
-            return res.status(500).json({ type: "error", message: err.message });
-        }
-        res.json(JSON.parse(body));
-    });
-});
-
-app.get("/bike/:id", (req, res) => {
-    fs.readFile("info.json", (err, data) => {
-        if (err) throw err;
-        var idBike = req.params.id;
-        console.log(idBike);
-        let bikes = JSON.parse(data);
-        console.log(bikes[idBike]);
-        res.json(bikes[idBike]);
-    });
-});
-
-app.get("/price/:id", (req, res) => {
-    fs.readFile("price.json", (err, data) => {
-        if (err) throw err;
-        var idPrice = req.params.id;
-        let price = JSON.parse(data);
-        console.log(price[idPrice]);
-        res.json(price[idPrice]);
-    });
-});
-
 //
 //Multi Route API Requests
 //
@@ -149,26 +112,45 @@ function adrMaker(names) {
     var endAdr = names[names.length - 3];
     var strEndAdr = endAdr.split(" ");
     var fnlEndAdr = strEndAdr.join("+");
-
-    for (i = 1; i < names.length - 3; i++) {
-        var working = names[i];
-        var work1 = working.split(" ");
-        var work2 = work1.join("+")
-        waypoints = waypoints + work2 + "|";
+    console.log(names.length - 3)
+    var wayAmt = names.length - 3
+    if (wayAmt == 1) {
+        var fnlurl =
+            "https://maps.googleapis.com/maps/api/directions/json?origin=" +
+            fnlStartAdr +
+            "&destination=" +
+            fnlEndAdr +
+            "&units=metric&key=AIzaSyAIf-vJKm6y4vhqsCFdMkuRYIOjb8Q8rxM";
+        var embedUrl = "https://www.google.com/maps/embed/v1/directions?origin=" +
+            fnlStartAdr +
+            "&destination=" +
+            fnlEndAdr +
+            " &key=AIzaSyAIf-vJKm6y4vhqsCFdMkuRYIOjb8Q8rxM";
+        return [fnlurl, embedUrl]
     }
-    var fnlwaypoints = waypoints.slice(0, -1);
-    var fnlurl =
-        "https://maps.googleapis.com/maps/api/directions/json?origin=" +
-        fnlStartAdr +
-        "&destination=" +
-        fnlEndAdr + fnlwaypoints +
-        "&units=metric&key=AIzaSyAIf-vJKm6y4vhqsCFdMkuRYIOjb8Q8rxM";
-    var embedUrl = "https://www.google.com/maps/embed/v1/directions?origin=" +
-        fnlStartAdr +
-        "&destination=" +
-        fnlEndAdr + fnlwaypoints +
-        " &key=AIzaSyAIf-vJKm6y4vhqsCFdMkuRYIOjb8Q8rxM";
-    return [fnlurl, embedUrl]
+    else {
+        for (i = 1; i < names.length - 3; i++) {
+            var working = names[i];
+            var work1 = working.split(" ");
+            var work2 = work1.join("+")
+            waypoints = waypoints + work2 + "|";
+        }
+        var fnlwaypoints = waypoints.slice(0, -1);
+        console.log(fnlwaypoints)
+        var fnlurl =
+            "https://maps.googleapis.com/maps/api/directions/json?origin=" +
+            fnlStartAdr +
+            "&destination=" +
+            fnlEndAdr + fnlwaypoints +
+            "&units=metric&key=AIzaSyAIf-vJKm6y4vhqsCFdMkuRYIOjb8Q8rxM";
+        var embedUrl = "https://www.google.com/maps/embed/v1/directions?origin=" +
+            fnlStartAdr +
+            "&destination=" +
+            fnlEndAdr + fnlwaypoints +
+            " &key=AIzaSyAIf-vJKm6y4vhqsCFdMkuRYIOjb8Q8rxM";
+        return [fnlurl, embedUrl]
+    }
+
 }
 
 async function calculations(fnlurl, bikeEff, bikeRange, price, symbol, nameBike, embUrl) {

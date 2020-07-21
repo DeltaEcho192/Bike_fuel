@@ -5,7 +5,7 @@
         Bike Fuel Calculator
     </title>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./style.css" />
 </head>
 
 <body>
@@ -14,35 +14,30 @@
             <a href="#">Bike Fuel Calculator</a>
             <nav>
                 <ul>
-                    <li><a href="./multiAdr.html">Multi Adr</a></li>
-                    <li><a href="./login.html">Login</a></li>
-                    <li><a onclick="user()">User</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="user.html">User</a></li>
+
                 </ul>
             </nav>
 
         </header>
-
-
     </div>
     <div class="form-main">
         <div class="form-group">
             <div class="leftwrapper">
-                <div class="start">
-                    <h4>Start Address</h4>
-                    <input id="autocomplete" class="form-control" placeholder="Enter your Start address"
-                        onFocus="geolocate()" type="text" />
-                </div>
-                <div class="end">
-                    <h4>End Address</h4>
-                    <input id="autocomplete2" class="form-control" placeholder="Enter your End address"
-                        onFocus="geolocate()" type="text" />
+                <div id="wrapperFlex">
+                    <input id="input0" class="autocomplete">
+                    <input id="input1" class="autocomplete">
                 </div>
                 <div class="buttons">
-                    <div class="calcBtn">
-                        <button onclick="apiCall()">Calculate</button>
+                    <div class="rowBtn">
+                        <button onclick="addRow()">Add</button>
                     </div>
-                    <div class="saveBtn">
-                        <button onclick="saveRoute()">Save</button>
+                    <div class="rmBtn">
+                        <button onclick="removeRow()">Remove</button>
+                    </div>
+                    <div class="calcBtn">
+                        <button onclick="postRow()">Calculate</button>
                     </div>
                 </div>
             </div>
@@ -61,15 +56,16 @@
                         <option value="2">CHF</option>
                         <option value="3">USD</option>
                     </select>
-                    <input type="checkbox" id="rtn" name="rtn" />
-                    <label id="rtnLbl">Include Return Journey</label>
+                </div>
+                <div class="saveBtn">
+                    <button onclick="saveRoute()">Save</button>
                 </div>
             </div>
         </div>
     </div>
     <div class="infoTbl" id="infoTbl">
         <div class="infoWrapper">
-            <table>
+            <table id="mainTbl">
                 <tr>
                     <th>Bike</th>
                     <th id="bikeTbl"></th>
@@ -110,7 +106,7 @@
 </body>
 <script src="directions.js"></script>
 <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIf-vJKm6y4vhqsCFdMkuRYIOjb8Q8rxM&libraries=places&callback=initAutocomplete"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIf-vJKm6y4vhqsCFdMkuRYIOjb8Q8rxM&libraries=places&callback=initialize"
     async defer></script>
 
 </html>

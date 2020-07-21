@@ -1,11 +1,27 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap");
 
+
+.autocomplete
+{
+    margin-top: 15px;
+}
+input{
+    width: 250px;
+    padding: 0.5em;
+}
+#wrapperFlex{
+    margin: 1em;
+    display: grid;
+    justify-content: center;
+}
+
 * {
   box-sizing: border-box;
 }
 body {
   margin: 0;
   font-family: "Montserrat", sans-serif;
+  background-color: white;
 }
 .heading {
   background-color: #262626;
@@ -13,8 +29,6 @@ body {
   font-weight: bold;
   padding: 1em;
   margin: 0;
-  font-family: "Montserrat", sans-serif;
-
 }
 header{
   display: flex;
@@ -34,8 +48,7 @@ ul {
 
 }
 li{
-  padding: 0 0.6em;
-  font-family: "Montserrat", sans-serif;
+  padding: 0 0.6em
 }
 
 .form-group {
@@ -75,6 +88,7 @@ button {
   border-radius: 3px;
   cursor: pointer;
   font-size: 17px;
+
 }
 h4 {
   margin: 0;
@@ -103,6 +117,7 @@ th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
+  font-weight: bold;
 }
 .mapFrame {
   padding: 50;
@@ -125,6 +140,9 @@ option {
   border: none;
 }
 .buttons{
-  display: flex;
-  justify-content: space-evenly;
+    display: flex;
+    justify-content: space-evenly;
+}
+.saveBtn{
+  text-align: center;
 }
