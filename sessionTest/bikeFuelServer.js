@@ -104,15 +104,17 @@ app.post("/send", function (req, res) {
 
 function adrMaker(names) {
     //Check if waypoints added
+    console.log(names)
     var waypoints = "&waypoints="
-    var startAdr = names[0];
-    var strStartAdr = startAdr.split(" ");
+    var startAdr = encodeURIComponent(names[0]);
+    var strStartAdr = startAdr.split("%2B");
     var fnlStartAdr = strStartAdr.join("+");
+    console.log(fnlStartAdr)
 
-    var endAdr = names[names.length - 3];
-    var strEndAdr = endAdr.split(" ");
+    var endAdr = encodeURIComponent(names[names.length - 3]);
+    var strEndAdr = endAdr.split("%2B");
     var fnlEndAdr = strEndAdr.join("+");
-    console.log(names.length - 3)
+    console.log(fnlEndAdr)
     var wayAmt = names.length - 3
     if (wayAmt == 1) {
         var fnlurl =
@@ -130,8 +132,8 @@ function adrMaker(names) {
     }
     else {
         for (i = 1; i < names.length - 3; i++) {
-            var working = names[i];
-            var work1 = working.split(" ");
+            var working = encodeURIComponent(names[i]);
+            var work1 = working.split("%2B");
             var work2 = work1.join("+")
             waypoints = waypoints + work2 + "|";
         }
@@ -159,6 +161,7 @@ async function calculations(fnlurl, bikeEff, bikeRange, price, symbol, nameBike,
     var rtnValues = []
     let obj = await getJSON(fnlurl)
     var apiReturn = obj
+    console.log(apiReturn)
     console.log(apiReturn.routes[0].legs.length)
     for (i = 0; i < apiReturn.routes[0].legs.length; i++) {
         var distanceVar = apiReturn.routes[0].legs[i].distance.value;
@@ -309,7 +312,15 @@ app.get('/test', function (request, response) {
     response.end();
 });
 
-
+router.get('/logout', function (req, res) {
+    req.session.destroy(function (err) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.redirect('/');
+        }
+    });
+});
 //
 //Sign up system
 //
@@ -362,7 +373,6 @@ app.post('/signup', function (request, response) {
                 database.query(useridQuery).then(rows => insert(rows[0].userid, username, password))
                 console.log("Entering user")
                 response.redirect('/login')
-
             }
             response.end();
         });

@@ -1,11 +1,6 @@
 Add more bikes to the info list
 Docker compose
 Custon bike pop up
-URI encodeing
-Check make sure when save all values are filled
-Response field
-Remove Useless functions
-Log out btn
 Moveing all the Datbase work to firebase
 Maybe Change auth to firebase
 setup documentaion for all the sql stuff

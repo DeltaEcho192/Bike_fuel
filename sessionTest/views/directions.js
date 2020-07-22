@@ -1,3 +1,4 @@
+
 var count = 2;
 var tblCount = 1;
 var fnl;
@@ -160,6 +161,7 @@ async function saveRoute() {
     var pushData = [bikeV, priceV, startAdr, endAdTbl, distance, time, litre, cost, stops, waypoints];
     console.log(pushData)
 
+
     var url = "http://localhost:9000/save"
     data = JSON.stringify(pushData)
     console.log(data)
@@ -175,15 +177,21 @@ async function saveRoute() {
         body: data
     });
     console.log(response.status)
-    window.alert(response.status)
+    if (response.status == 201) {
+        window.alert("Route Has Succesfully been saved.")
+    }
+    if (response.status == 404) {
+        window.alert("There has been an Issue with saving the Route.")
+    }
 }
-function checkLog() {
-    var url = "http://localhost:9000/test"
+
+function logout() {
+    var url = "http://localhost:9000/logout"
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function () {
-        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-            var apireturn = xmlHttp.responseText;
-        console.log(apireturn)
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+            window.alert("You have been logged out.")
+        }
     };
     xmlHttp.open("GET", url, true);
     xmlHttp.send();

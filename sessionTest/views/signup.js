@@ -19,7 +19,13 @@ async function signup() {
         body: data
     });
     console.log(response)
-    window.alert(response.status)
-    window.location.href = response.url;
+    if (response.status == 200) {
+        window.alert("Sign up has been successful.")
+        window.location.href = response.url;
+    }
+    if (response.status == 406) {
+        window.alert("A user with this username has already been taken.")
+    }
+
 }
 

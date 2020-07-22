@@ -28,10 +28,19 @@ async function authenticate() {
         if (response.status == 200) {
             window.alert("Successful Login")
             window.location.href = response.url;
-
-
         }
 
     }
 }
 
+function logout() {
+    var url = "http://localhost:9000/logout"
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function () {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+            window.alert("You have been logged out.")
+        }
+    };
+    xmlHttp.open("GET", url, true);
+    xmlHttp.send();
+}
