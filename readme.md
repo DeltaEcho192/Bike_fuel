@@ -1,4 +1,4 @@
-# Bike Fuel Application (Warning Outdated)
+# Bike Fuel Application
 
 ## Description:
 
@@ -17,20 +17,25 @@ Basic Function:
 - Docker
 - Node JS
 
-## Future Additions:
-- Login System and being able to save routes.
-
 ## Instalations
 To run you first have to have docker installed and running on your system.
-Then to build the service:
-* Enter the working directory
-* Run `docker build -t bikefuel/my-apache2 .`
-* Run `docker run -dit --name bikefuelserver -p 5500:80 bikefuel/my-apache2`
-* Then go into the NodeJS directory
-* Run `docker build -t bikefuel/node-web-app .`
-* Run `docker run -p 9000:9000 bikefuel/node-web-app`
-* Now you can go to http://localhost:5500 and the website will be live.
+MySQL:
+* Install MYSQL comunity server on your system.
+* To create database you can use PHPmyadmin or mysql workbench to test and open a connection to the database
+* Once you have successfully connected to the database. Open the DatabaseCreation.sql file and execute it.
+* This will create all the tables you need.
 
+Reddis Server:
+* Enter Main directory in the terminal
+* Run `docker-compose up`
+
+Then to build the service:
+* Download and install Node JS
+* Enter Main directory in the terminal
+* Run `npm install`
+* Run `node bikeFuelServer.js`
+
+The website will then be available at `http://localhost:9000`
 ## Reference:
 
 https://developers.google.com/maps/documentation/directions/start - Google maps directions API

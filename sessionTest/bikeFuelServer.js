@@ -401,7 +401,7 @@ router.get('/userRoutes', function (request, response) {
     if (request.session.key) {
         var userId = request.session.key;
         var limit = 5;
-        var sqlQuery = 'SELECT  * FROM routes WHERE userid = ' + userId + ' limit 5;';
+        var sqlQuery = 'SELECT  * FROM routes WHERE userid = ' + userId + ';';
         console.log(sqlQuery)
         connection.query(sqlQuery, function (error, results, fields) {
             response.json(results)
