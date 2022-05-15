@@ -8,10 +8,10 @@
     "start": "node proxy.js"
   },
   "dependencies": {
+    "bent": "^7.3.7",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "package.json": "^2.0.1",
-    "request": "^2.88.2",
-    "cors": "^2.8.5",
-    "bent": "^7.3.7"
+    "request": "^2.88.2"
   }
 }

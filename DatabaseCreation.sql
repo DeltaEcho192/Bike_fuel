@@ -1,5 +1,8 @@
 CREATE DATABASE bike_fuel;
 USE bike_fuel;
+SELECT * FROM users;
+SELECT userid FROM users WHERE usrname = "admin" AND pswd = "xxmaster";
+SHOW DATABASES;
 CREATE TABLE users (
 userid int,
 usrname VARCHAR(255),
