@@ -1,0 +1,48 @@
+version: '3.8'
+services:
+  cache:
+    image: redis:6.2-alpine
+    restart: always
+    ports:
+      - '6379:6379'
+    expose:
+      [6379]
+    volumes: 
+      - cache:/data
+  mysql:
+    platform: linux/x86_64
+    container_name: bike_mysql
+    restart: always
+    image: mysql
+    command: --init-file /data/application/setup.sql
+    ports: 
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: 'xxmaster'
+      MYSQL_USER: 'bike'
+      MYSQL_PASSWORD: 'xxmaster'
+      MYSQL_DATABASE: 'bike_fuel'
+    volumes:
+      - ./Mysql/setup.sql:/data/application/setup.sql
+      - bike_vol:/var/lib/mysql
+    networks:
+            default:
+  nodejs:
+        build:
+            context: ./Server
+        depends_on: 
+            - mysql
+        restart: always
+        networks:
+            default:
+        ports:
+            - "9000:9000"
+        container_name: bike_server
+volumes:
+  bike_vol:
+  cache:
+    driver: local
+
+networks:
+    default:
+        driver: bridge
