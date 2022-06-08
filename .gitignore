@@ -1,3 +1,5 @@
 NodeJs/node_modules/
 temp.css
 sessionTest/node_modules
+Server/config.json
+.DS_Store
