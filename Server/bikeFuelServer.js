@@ -11,8 +11,9 @@ var session = require('express-session');
 const { response } = require("express");
 const router = express.Router();
 const redis = require('redis');
+let configData = require("./config.json");
 const redisStore = require('connect-redis')(session);
-const client = redis.createClient({port: 6379,host: 'cache'});
+const client = redis.createClient({port: configData.redisPort,host: configData.redisName});
 var ObjectId = require('mongodb').ObjectID;
 
 const MongoClient = require("mongodb").MongoClient;
@@ -35,7 +36,7 @@ app.use((req, res, next) => {
 app.use(session({
     secret: 'ssshhhhh',
     store: new redisStore({
-        host: 'cache', port: 6379, client: client, ttl: 260,
+        host: configData.redisName, port: configData.redisPort, client: client, ttl: 260,
         saveUninitialized: true, resave: true
     }),
     saveUninitialized: true, resave: true
@@ -50,10 +51,11 @@ app.use(session({
     saveUninitialized: true
 }));
 
+
 //TODO refactor const
-const url = "mongodb://root:xxmaster@mongo:27017";
+const url = "mongodb://"+configData.dbUser+":"+configData.dbPassword+"@"+configData.dbADR+":"+configData.dbPort;
 // Database Name
-const dbName = "bike";
+const dbName = configData.dbName;
 var db;
 
 MongoClient.connect(url, function (err, client) {
@@ -209,7 +211,7 @@ async function calculations(fnlurl, bikeEff, bikeRange, price, symbol, nameBike,
 }
 
 function bikeID(bikeId) {
-    var bike = fs.readFileSync("info.json", 'utf8');
+    var bike = fs.readFileSync(configData.bikeInfo, 'utf8');
     bike = JSON.parse(bike);
     bikeData = bike[bikeId]
     fuelEff = bikeData[0].fuel_eff;
@@ -218,7 +220,7 @@ function bikeID(bikeId) {
     return [fuelEff, tankSize, bikeName]
 }
 function priceID(priceId) {
-    var price = fs.readFileSync("price.json", 'utf8');
+    var price = fs.readFileSync(configData.priceInfo, 'utf8');
     price = JSON.parse(price);
     var priceData = price[priceId];
     var symbol = priceData[0].symbol
@@ -239,7 +241,7 @@ router.post('/auth', function (request, response) {
     if (usernameI && passwordI) {
 
         var query = {username: usernameI,password: passwordI};
-        db.collection("bike_users").find(query).toArray(function(err,result){
+        db.collection(configData.bike_users).find(query).toArray(function(err,result){
             if (err) throw err;
             if (result.length > 0)
             {
@@ -279,7 +281,7 @@ router.post('/save', function (request, response) {
         var query = {userid: userId,bike: bikeName,start: startAdr,end: endAdTbl,dist: distance,
             timev: timeI,litre:litreI,cost:costI,stops: stopsI, waypoints:waypointsI}
         
-        db.collection("bike_routes").insertOne(query, function(err, res){
+        db.collection(configData.bike_route).insertOne(query, function(err, res){
             if (err) throw err;
             console.log("Document entered");
             response.status(201);
@@ -330,7 +332,7 @@ app.post('/signup', function (request, response) {
     
     if (usernameI && passwordI) {
         var query = {username: usernameI};
-        db.collection("bike_users").find(query).toArray(function(err,result){
+        db.collection(configData.bike_users).find(query).toArray(function(err,result){
             if (err) throw err;
             if (result.length > 0)
             {
@@ -339,7 +341,7 @@ app.post('/signup', function (request, response) {
             }
             else{
                 var setQuery = {username: usernameI, password: passwordI};
-                db.collection("bike_users").insertOne(setQuery, function(err,res){
+                db.collection(configData.bike_users).insertOne(setQuery, function(err,res){
                     if(err) throw err;
                     console.log("Successful insert");
                     response.redirect('/login');
@@ -365,7 +367,7 @@ router.get('/userRoutes', function (request, response) {
         var userId = request.session.key;
         var query= {userid:userId};
         var limit = 5;
-        db.collection("bike_routes").find(query).toArray(function(err,result){
+        db.collection(configData.bike_route).find(query).toArray(function(err,result){
             if (err) throw err;
             console.log(result);
             response.json(result);
@@ -379,7 +381,7 @@ router.get('/delRoute/:id', function (req, res) {
         var routeID = req.params.id;
         console.log(routeID);
         var delQuery  = {userid: userId,_id: ObjectId(routeID)}
-        db.collection("bike_routes").deleteOne(delQuery,function(err, obj){
+        db.collection(configData.bike_route).deleteOne(delQuery,function(err, obj){
             if (err) throw err;
             //console.log(obj);
             res.status(200);
