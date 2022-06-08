@@ -104,10 +104,10 @@ async function deleteRecord() {
     const data = myTable.getSelectedData();
     verf = confirm("Are you sure you want to Delete this row")
     if (verf == true) {
-        console.log(data[0].routeID);
-        const fetchPromise = fetch("http://localhost:9000/delRoute/" + data[0].routeID);
+        console.log(data[0]._id);
+        const fetchPromise = fetch("http://localhost:9000/delRoute/" + data[0]._id);
         fetchPromise.then(response => {
-            console.log(response.json())
+            console.log(response.status);
         })
     }
 }

@@ -13,6 +13,7 @@ const router = express.Router();
 const redis = require('redis');
 const redisStore = require('connect-redis')(session);
 const client = redis.createClient({port: 6379,host: 'cache'});
+var ObjectId = require('mongodb').ObjectID;
 
 const MongoClient = require("mongodb").MongoClient;
 const assert = require("assert");
@@ -376,11 +377,14 @@ router.get('/delRoute/:id', function (req, res) {
     if (req.session.key) {
         var userId = req.session.key;
         var routeID = req.params.id;
-        var sqlQuery = 'delete FROM routes where userid =' + userId + " and routeID = " + routeID + ";";
-        console.log(sqlQuery)
-        connection.query(sqlQuery, function (error, results, fields) {
-            res.json(results)
-        });
+        console.log(routeID);
+        var delQuery  = {userid: userId,_id: ObjectId(routeID)}
+        db.collection("bike_routes").deleteOne(delQuery,function(err, obj){
+            if (err) throw err;
+            //console.log(obj);
+            res.status(200);
+        })
+        res.end();
     }
 })
 app.use('/', router);
