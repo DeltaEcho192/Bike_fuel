@@ -1,8 +1,12 @@
-Add more bikes to the info list
-Docker compose
-Custon bike pop up
-Write up documentaion
-write comments
-Moveing all the Datbase work to firebase
-Maybe Change auth to firebase
-setup documentaion for all the sql stuff
+Old TODO:
+
+-- Add more bikes to the info list
+-- Docker compose -- Complete
+-- Custom bike pop up
+-- Write up documentaion
+-- Write comments
+
+New TODO:
+-- Change to list input format.
+-- Redesign output to a new page.
+-- Try and get fuel price from API again.

@@ -14,6 +14,8 @@ const redis = require('redis');
 const redisStore = require('connect-redis')(session);
 const client = redis.createClient({port: 6379,host: 'cache'});
 
+const MongoClient = require("mongodb").MongoClient;
+const assert = require("assert");
 const app = express();
 
 var sass;
@@ -47,6 +49,18 @@ app.use(session({
     saveUninitialized: true
 }));
 
+//TODO refactor const
+const url = "mongodb://root:xxmaster@mongo:27017";
+// Database Name
+const dbName = "bike";
+var db;
+
+MongoClient.connect(url, function (err, client) {
+  assert.equal(null, err);
+  console.log("Connected successfully to server");
+
+  db = client.db(dbName);
+});
 
 //
 //Single Route API Requests
@@ -215,37 +229,30 @@ function priceID(priceId) {
 //Login System
 //
 
-var connection = mysql.createConnection({
-    host: '0.0.0.0',
-    user: 'bike',
-    password: 'xxmaster',
-    database: 'bike_fuel'
-});
-
 
 router.post('/auth', function (request, response) {
-    var username = request.body[0];
-    var password = request.body[1];
-    console.log("username" + username);
-    console.log("password" + password);
-    console.log(connection.state)
-    if (username && password || connection.state == "connected") {
-        var sqlQuery = 'SELECT userid FROM users WHERE usrname = "' + username + '" AND pswd = "' + password + '";';
-        console.log(sqlQuery)
-        connection.query(sqlQuery, function (error, results, fields) {
-            console.log(results)
-            console.log(error)
-            if (results.length > 0) {
+    var usernameI = request.body[0];
+    var passwordI = request.body[1];
+    console.log("username" + usernameI);
+    console.log("password" + passwordI);
+    if (usernameI && passwordI) {
+
+        var query = {username: usernameI,password: passwordI};
+        db.collection("bike_users").find(query).toArray(function(err,result){
+            if (err) throw err;
+            if (result.length > 0)
+            {
                 request.session.loggedin = true;
-                console.log(results[0].userid)
-                request.session.key = results[0].userid;
+                console.log(result[0].username)
+                request.session.key = result[0].username;
                 response.redirect('/');
-            } else {
+            }
+            else{
                 response.send(404)
                 console.log("not correct")
             }
             response.end();
-        });
+        })
     } else {
         response.send('Please enter Username and Password!');
         response.end();
@@ -326,79 +333,42 @@ router.get('/logout', function (req, res) {
 //Sign up system
 //
 
-class Database {
-    constructor(config) {
-        this.connection = mysql.createConnection(config);
-    }
-    query(sql, args) {
-        return new Promise((resolve, reject) => {
-            this.connection.query(sql, args, (err, rows) => {
-                if (err)
-                    return reject(err);
-                resolve(rows);
-            });
-        });
-    }
-    close() {
-        return new Promise((resolve, reject) => {
-            this.connection.end(err => {
-                if (err)
-                    return reject(err);
-                resolve();
-            });
-        });
-    }
-}
-
 
 app.post('/signup', function (request, response) {
-    var username = request.body[0];
-    var password = request.body[1];
-    console.log(username);
-    console.log(password)
-    if (username && password) {
-        var sqlQuery = 'SELECT * FROM users WHERE usrname = "' + username + '" AND pswd = "' + password + '";';
+    var usernameI = request.body[0];
+    var passwordI = request.body[1];
+    console.log(usernameI);
+    console.log(passwordI)
 
-        console.log(sqlQuery)
-        connection.query(sqlQuery, function (error, results, fields) {
-            if(typeof results !== 'undefined')
+
+    
+    if (usernameI && passwordI) {
+        var query = {username: usernameI};
+        db.collection("bike_users").find(query).toArray(function(err,result){
+            if (err) throw err;
+            if (result.length > 0)
             {
-            if (results.length > 0) {
-                response.status(406)
-            } else {
-                database = new Database({
-                    host: 'localhost',
-                    user: 'root',
-                    password: 'xxmaster',
-                    database: 'bike_fuel'
+                console.log("User does not exist");
+                response.status(406);
+            }
+            else{
+                var setQuery = {username: usernameI, password: passwordI};
+                db.collection("bike_users").insertOne(setQuery, function(err,res){
+                    if(err) throw err;
+                    console.log("Successful insert");
+                    response.redirect('/login');
                 })
-                var useridQuery = "SELECT userid FROM users ORDER BY userid DESC LIMIT 1"
-                database.query(useridQuery).then(rows => insert(rows[0].userid, username, password))
-                console.log("Entering user")
-                response.redirect('/login')
             }
             response.end();
-            }
-            
-  
-            
-        });
+        })
     } else {
         response.send('Please enter Username and Password!');
         response.end();
     }
+    
 });
 
-function insert(newId, username, password) {
-    console.log(newId)
-    newId = newId + 1;
-    var sqlInsert = 'INSERT INTO users VALUES (' + newId + ',"' + username + '","' + password + '");';
-    console.log(sqlInsert)
-    connection.query(sqlInsert, function (error, results) {
-        console.log("User entered")
-    })
 
-}
 
 //
 // User Page
@@ -407,12 +377,13 @@ function insert(newId, username, password) {
 router.get('/userRoutes', function (request, response) {
     if (request.session.key) {
         var userId = request.session.key;
+        var query= {userid:userId};
         var limit = 5;
-        var sqlQuery = 'SELECT  * FROM routes WHERE userid = ' + userId + ';';
-        console.log(sqlQuery)
-        connection.query(sqlQuery, function (error, results, fields) {
-            response.json(results)
-        });
+        db.collection("bike_routes").find(query).toArray(function(err,result){
+            if (err) throw err;
+            console.log(result);
+            response.json(result);
+        })
     }
 })
 
