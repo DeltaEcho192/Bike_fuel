@@ -1,5 +1,4 @@
-NodeJs/node_modules/
+Server/node_modules/
 temp.css
-sessionTest/node_modules
 Server/config.json
 .DS_Store
