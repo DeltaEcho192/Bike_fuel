@@ -269,36 +269,21 @@ router.post('/save', function (request, response) {
         var startAdr = request.body[2]
         var endAdTbl = request.body[3]
         var distance = request.body[4]
-        var time = request.body[5]
-        var litre = request.body[6]
-        var cost = request.body[7]
-        var stops = request.body[8]
-        var waypoints = request.body[9]
-        var baseSql = "INSERT INTO routes (userid,bike,startAdr,endAdr,distance,timevar,litre,cost,stops,waypoint1,waypoint2,waypoint3,waypoint4,waypoint5) VALUES (" + userId + ',"' + bikeName + '","' + startAdr + '","' + endAdTbl + '","' + distance + '","' + time + '","' + litre + '","' + cost + '","' + stops;
-        if (waypoints.length > 0) {
-            for (v = 0; v < waypoints.length; v++) {
-                baseSql = baseSql + '","' + waypoints[v]
-                nullCounter--;
-            }
-            baseSql = baseSql + '"'
-            for (b = 0; b < nullCounter; b++) {
-                baseSql = baseSql + ',' + null
-            }
-            baseSql = baseSql + ');'
-        }
-        else {
-            baseSql = "INSERT INTO routes (userid,bike,startAdr,endAdr,distance,timevar,litre,cost,stops,waypoint1,waypoint2,waypoint3,waypoint4,waypoint5) VALUES (" + userId + ',"' + bikeName + '","' + startAdr + '","' + endAdTbl + '","' + distance + '","' + time + '","' + litre + '","' + cost + '","' + stops + '",' + null + ',' + null + ',' + null + ',' + null + ',' + null + ');';
-
-        }
-        console.log(userId)
-        //console.log(userId + " " + bikeName + " " + price + " " + startAdr + " " + endAdTbl + " " + distance + " " + time + " " + litre + " " + cost + " " + stops + " " + waypoints)
-        console.log(baseSql)
-        connection.query(baseSql, function (error, results, fields) {
-            if (error) throw error;
-            console.log("1 record inserted");
+        var timeI = request.body[5]
+        var litreI = request.body[6]
+        var costI = request.body[7]
+        var stopsI = request.body[8]
+        var waypointsI = request.body[9]
+        
+        var query = {userid: userId,bike: bikeName,start: startAdr,end: endAdTbl,dist: distance,
+            timev: timeI,litre:litreI,cost:costI,stops: stopsI, waypoints:waypointsI}
+        
+        db.collection("bike_routes").insertOne(query, function(err, res){
+            if (err) throw err;
+            console.log("Document entered");
             response.status(201);
             response.end();
-        });
+        })
     } else {
         response.status(404)
         response.end();

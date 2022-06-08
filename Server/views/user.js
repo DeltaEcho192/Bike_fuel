@@ -59,10 +59,10 @@ function tableRow(tableData) {
         layout: "fitColumns", //fit columns to width of table (optional)
         columns: [ //Define Table Columns
             { title: "Bike", field: "bike", width: 150 },
-            { title: "Start Address", field: "startAdr" },
-            { title: "End Address", field: "endAdr" },
-            { title: "Distance", field: "distance" },
-            { title: "Time", field: "timevar" },
+            { title: "Start Address", field: "start" },
+            { title: "End Address", field: "end" },
+            { title: "Distance", field: "dist" },
+            { title: "Time", field: "timev" },
             { title: "Litres", field: "litre" },
             { title: "Cost", field: "cost" },
             { title: "Stops", field: "stops" },
