@@ -1,8 +1,10 @@
 
-
+const host = 'localhost';
+const port = "9000"
+var servAddr = "http://"+host+":"+port
 async function authenticate() {
     // Default options are marked with *
-    var url = "http://localhost:9000/auth"
+    var url = servAddr+"/auth"
     var username = document.getElementById("usrname").value;
     var pswd = document.getElementById("pswd").value;
     var data = [username, pswd]
@@ -34,7 +36,7 @@ async function authenticate() {
 }
 
 function logout() {
-    var url = "http://localhost:9000/logout"
+    var url = servAddr+"/logout"
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function () {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {

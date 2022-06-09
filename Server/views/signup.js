@@ -1,6 +1,11 @@
+
+const host = 'localhost';
+const port = "9000"
+var servAddr = "http://"+host+":"+port
+
 async function signup() {
     // Default options are marked with *
-    var url = "http://localhost:9000/signup"
+    var url = servAddr+"/signup"
     var username = document.getElementById("usrname").value;
     var pswd = document.getElementById("pswd").value;
     var data = [username, pswd]

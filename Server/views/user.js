@@ -1,4 +1,9 @@
 
+
+const host = 'localhost';
+const port = "9000"
+var servAddr = "http://"+host+":"+port
+
 function addRow(routeData) {
     for (i = 0; i < routeData.length; i++) {
         console.log(routeData[i])
@@ -40,7 +45,7 @@ function rowFiller() {
 
 async function fuelGet() {
 
-    const fetchPromise = fetch("http://localhost:9000/userRoutes");
+    const fetchPromise = fetch(servAddr+"/userRoutes");
     fetchPromise.then(response => {
 
         return response.json();
@@ -105,7 +110,7 @@ async function deleteRecord() {
     verf = confirm("Are you sure you want to Delete this row")
     if (verf == true) {
         console.log(data[0]._id);
-        const fetchPromise = fetch("http://localhost:9000/delRoute/" + data[0]._id);
+        const fetchPromise = fetch(servAddr+"/delRoute/" + data[0]._id);
         fetchPromise.then(response => {
             console.log(response.status);
         })

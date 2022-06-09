@@ -3,6 +3,10 @@ var count = 2;
 var tblCount = 1;
 var fnl;
 
+const host = 'localhost';
+const port = "9000"
+var servAddr = "http://"+host+":"+port
+
 function addRow() {
     if (count < 5) {
         var field = document.createElement("INPUT");
@@ -67,7 +71,7 @@ function postRow() {
     }
     data.push(bikeV);
     data.push(priceV);
-    postData("http://localhost:9000/send", data)
+    postData(servAddr+"/send", data)
 
 }
 
@@ -162,7 +166,7 @@ async function saveRoute() {
     console.log(pushData)
 
 
-    var url = "http://localhost:9000/save"
+    var url = servAddr+"/save"
     data = JSON.stringify(pushData)
     console.log(data)
     const response = await fetch(url, {
@@ -186,7 +190,7 @@ async function saveRoute() {
 }
 
 function logout() {
-    var url = "http://localhost:9000/logout"
+    var url = servAddr+"logout"
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function () {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
