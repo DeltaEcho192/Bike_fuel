@@ -28,13 +28,29 @@
         </div>
     </div>
     <div class="main_page">
-        <div id="example-table"></div>
+        <div class="flex_child" id="routes-table"></div>
+        <div class="flex_child" id="route-extended-data">
+            <div class="flex_parent" >
+                <div class="flex_child" id="route-data-info">
+                    <ul class="bikeInfo" id="route-info">
+                    </ul>
+                </div>
+                <div class="flex_child" id="route-data-map" ><iframe id="mapDisp" width="650px" height="450" frameborder="0" style="border: 0;" allowfullscreen></iframe></div>
+            </div>
+            
+
+            </div>
+        </div>
     </div>
+    
 
 
 
 </body>
 <script src="user.js"></script>
 <script type="text/javascript" src="https://unpkg.com/tabulator-tables@4.7.2/dist/js/tabulator.min.js"></script>
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIf-vJKm6y4vhqsCFdMkuRYIOjb8Q8rxM&libraries=places&callback=initialize"
+    async defer></script>
 
 </html>

@@ -277,9 +277,10 @@ router.post('/save', function (request, response) {
         var costI = request.body[7]
         var stopsI = request.body[8]
         var waypointsI = request.body[9]
+        var mapLinkI = request.body[10]
         
         var query = {userid: userId,bike: bikeName,start: startAdr,end: endAdTbl,dist: distance,
-            timev: timeI,litre:litreI,cost:costI,stops: stopsI, waypoints:waypointsI}
+            timev: timeI,litre:litreI,cost:costI,stops: stopsI, waypoints:waypointsI,mapLink:mapLinkI}
         
         db.collection(configData.bike_route).insertOne(query, function(err, res){
             if (err) throw err;

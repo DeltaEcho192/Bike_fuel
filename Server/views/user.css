@@ -52,8 +52,22 @@ p{
     grid-template-columns: auto auto auto;
 }
 .main_page{
+    display: flex;
     margin-top: 40px;
     text-align: -webkit-center;
+}
+.flex_child{
+  flex: 1
+}
+.flex_parent{
+  display: flex;
+}
+.bikeInfo{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: block;
+  text-align: left;
 }
 main {
     display: flex;

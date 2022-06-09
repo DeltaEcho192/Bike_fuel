@@ -3,6 +3,7 @@
 const host = 'localhost';
 const port = "9000"
 var servAddr = "http://"+host+":"+port
+let datacheck = {};
 
 function addRow(routeData) {
     for (i = 0; i < routeData.length; i++) {
@@ -58,7 +59,7 @@ async function fuelGet() {
 }
 
 function tableRow(tableData) {
-    var table = new Tabulator("#example-table", {
+    var table = new Tabulator("#routes-table", {
         height: 300, // set height of table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value)
         data: tableData, //assign data to table
         layout: "fitColumns", //fit columns to width of table (optional)
@@ -66,7 +67,7 @@ function tableRow(tableData) {
             { title: "Bike", field: "bike", width: 150 },
             { title: "Start Address", field: "start" },
             { title: "End Address", field: "end" },
-            { title: "Distance", field: "dist" },
+            /*{ title: "Distance", field: "dist" },
             { title: "Time", field: "timev" },
             { title: "Litres", field: "litre" },
             { title: "Cost", field: "cost" },
@@ -74,10 +75,14 @@ function tableRow(tableData) {
             { title: "Waypoint 1", field: "waypoint1" },
             { title: "Waypoint 2", field: "waypoint2" },
             { title: "Waypoint 3", field: "waypoint3" },
+            */
 
         ],
         rowClick: function (e, row) { //trigger an alert message when the row is clicked
             row.toggleSelect();
+            datacheck = row;
+            console.log(row._row.data);
+            generateData(row._row.data);
         },
     });
 
@@ -85,7 +90,7 @@ function tableRow(tableData) {
 
 
 function search() {
-    const table = Tabulator.prototype.findTable("#example-table")[0];
+    const table = Tabulator.prototype.findTable("#routes-table")[0];
     var input = document.getElementById("searchInput");
 
     var filters = [];
@@ -105,7 +110,7 @@ function search() {
 }
 
 async function deleteRecord() {
-    const myTable = Tabulator.prototype.findTable("#example-table")[0];
+    const myTable = Tabulator.prototype.findTable("#routes-table")[0];
     const data = myTable.getSelectedData();
     verf = confirm("Are you sure you want to Delete this row")
     if (verf == true) {
@@ -115,4 +120,26 @@ async function deleteRecord() {
             console.log(response.status);
         })
     }
+}
+
+function generateData(information){
+    let list = document.getElementById("route-info");
+    while(list.firstChild)
+    {
+        list.removeChild(list.firstChild);
+    }
+    var prefixList = {"bike":"Bike","start":"Start","end":"End","dist":"Distance","litre":"Litre","timev":"Time","stops":"Stops"}
+    const keysPrefix = Object.keys(prefixList);
+    var maplink = information["mapLink"];
+    var ifrm = document.getElementById("mapDisp");
+    ifrm.src = maplink
+    keysPrefix.forEach((key, index) =>{
+        addItem(prefixList[key],information[key])
+    })
+
+}
+
+function addItem(prefex,value){
+    var datalist = document.getElementById("route-info");
+    datalist.innerHTML += "<li>"+prefex+" : "+value+"</li>"
 }

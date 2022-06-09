@@ -155,6 +155,7 @@ async function saveRoute() {
     var litre = document.getElementById("lTbl").innerHTML;
     var cost = document.getElementById("costTbl").innerHTML;
     var stops = document.getElementById("stopsTbl").innerHTML;
+    var mapLink = document.getElementById("mapDisp").src;
     var waypoints = []
     if (tblCount > 1) {
         for (c = 1; c < tblCount; c++) {
@@ -162,7 +163,7 @@ async function saveRoute() {
             waypoints.push(document.getElementById(wayName).innerHTML)
         }
     }
-    var pushData = [bikeV, priceV, startAdr, endAdTbl, distance, time, litre, cost, stops, waypoints];
+    var pushData = [bikeV, priceV, startAdr, endAdTbl, distance, time, litre, cost, stops, waypoints,mapLink];
     console.log(pushData)
 
 
