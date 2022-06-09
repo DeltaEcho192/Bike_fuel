@@ -103,6 +103,15 @@ router.get('/userPage', (req, res) => {
     }
 })
 
+
+let bikeConfig = require("./info.json");
+let priceConfig = require("./price.json");
+router.get("/bikeInfo",(req,res) =>{
+    res.json(bikeConfig);
+})
+router.get("/priceInfo",(req,res) =>{
+    res.json(priceConfig)
+})
 //
 //Multi Route API Requests
 //

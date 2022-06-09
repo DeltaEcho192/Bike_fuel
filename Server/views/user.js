@@ -64,7 +64,7 @@ function tableRow(tableData) {
         data: tableData, //assign data to table
         layout: "fitColumns", //fit columns to width of table (optional)
         columns: [ //Define Table Columns
-            { title: "Bike", field: "bike", width: 150 },
+            { title: "Bike", field: "bike", width: 100 },
             { title: "Start Address", field: "start" },
             { title: "End Address", field: "end" },
             /*{ title: "Distance", field: "dist" },
@@ -136,6 +136,12 @@ function generateData(information){
     keysPrefix.forEach((key, index) =>{
         addItem(prefixList[key],information[key])
     })
+    var waypoints = information["waypoints"]
+    for(i=0;i<waypoints.length;i++)
+    {
+        var name = "Waypoint "+(i+1)+":"
+        addItem(name,waypoints[i])
+    }
 
 }
 

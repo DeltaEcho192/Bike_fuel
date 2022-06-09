@@ -201,3 +201,56 @@ function logout() {
     xmlHttp.open("GET", url, true);
     xmlHttp.send();
 }
+
+function onLoadInfo()
+{
+    getBikeConfig();
+    getPriceConfig();
+}
+
+function getBikeConfig(){
+
+    const fetchPromise = fetch(servAddr+"/bikeInfo");
+    fetchPromise.then(response => {
+
+        return response.json();
+    }).then(PromiseStatus => {
+        var bikeInfo = PromiseStatus
+        //console.log(bikeInfo[0])
+        addBikeOption(bikeInfo)
+    });
+}
+let testData = {};
+function addBikeOption(data){
+    //console.log(data);
+    testData = data;
+    const keyData = Object.keys(data);
+    var bikeInfoCheck = document.getElementById("bikeList");
+    keyData.forEach((key, index) =>{
+        //console.log(key);
+        console.log(data[key][0].name);
+        bikeInfoCheck.innerHTML += "<option value='"+key+"'>"+data[key][0].name+"</option>";
+    })
+
+}
+function getPriceConfig(){
+    const fetchPromise = fetch(servAddr+"/priceInfo");
+    fetchPromise.then(response => {
+
+        return response.json();
+    }).then(PromiseStatus => {
+        var priceInfo = PromiseStatus
+        //console.log(bikeInfo[0])
+        addPriceOption(priceInfo)
+    });
+}
+function addPriceOption(data)
+{
+    testData = data;
+    const keyData = Object.keys(data);
+    var priceInfoCheck = document.getElementById("priceList");
+    keyData.forEach((key, index) =>{
+        //console.log(key);
+        console.log(data[key][0].curr);
+        priceInfoCheck.innerHTML += "<option value='"+key+"'>"+data[key][0].curr+"</option>";})
+}
