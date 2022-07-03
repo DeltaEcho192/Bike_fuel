@@ -158,9 +158,13 @@ function adrMaker(names) {
     }
     else {
         for (i = 1; i < names.length - 3; i++) {
+            console.log(names[i])
             var working = encodeURIComponent(names[i]);
+            console.log(working)
             var work1 = working.split("%2B");
+            console.log(work1)
             var work2 = work1.join("+")
+            console.log(work2)
             waypoints = waypoints + work2 + "|";
         }
         var fnlwaypoints = waypoints.slice(0, -1);
@@ -171,6 +175,7 @@ function adrMaker(names) {
             "&destination=" +
             fnlEndAdr + fnlwaypoints +
             "&units=metric&key=AIzaSyAIf-vJKm6y4vhqsCFdMkuRYIOjb8Q8rxM";
+        console.log(fnlurl)
         var embedUrl = "https://www.google.com/maps/embed/v1/directions?origin=" +
             fnlStartAdr +
             "&destination=" +
@@ -215,8 +220,60 @@ async function calculations(fnlurl, bikeEff, bikeRange, price, symbol, nameBike,
     } else {
         amtStops = Math.ceil(amtStops);
     }
-    rtnValues.push(distance, totalTime, fuelUsage, fnlCost, amtStops, symbol, nameBike, embUrl)
+
+    //console.log(apiReturn.routes[0].legs[0].steps)
+    fuelStop(distance,amtStops,apiReturn.routes[0].legs,bikeRange)
+    rtnValues.push(distance, totalTime, fuelUsage, fnlCost, amtStops, symbol, nameBike, embUrl,apiReturn)
     return rtnValues
+}
+
+const fuelReserve = 50000
+const emergancy = 20000
+function fuelStop(distance,amtStops,intialApiSteps,bikeRange, )
+{
+    positions = []
+    cutoff = (bikeRange * 1000) - fuelReserve
+    emergancyReserve = (bikeRange * 1000) - emergancy
+    legCounter = 0;
+    for(i=0; i < intialApiSteps.length; i++)
+    {
+        if(intialApiSteps[i].distance.value > emergancyReserve)
+        {
+            legCounter = i
+            break;
+        }
+    }
+    console.log(cutoff)
+    sumDist = 0 
+    stepCounter = 0
+    for(i=0; i < intialApiSteps[legCounter].steps.length; i++)
+    {
+        if(sumDist + intialApiSteps[legCounter].steps[i].distance.value < cutoff)
+        {
+            sumDist = sumDist + intialApiSteps[legCounter].steps[i].distance.value
+            console.log(sumDist)
+            stepCounter = stepCounter + 1
+            console.log(stepCounter)
+        }else{
+            break;
+        }
+        //console.log(intialApiSteps[i].distance.value)
+    }
+    console.log(sumDist)
+    console.log(stepCounter)
+    console.log(intialApiSteps[legCounter].steps[stepCounter].end_location)
+    getStation(intialApiSteps[legCounter].steps[stepCounter].end_location)
+}
+
+async function getStation(location)
+{
+    placeUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=gas&location=${location.lat}%2C${location.lng}&radius=50000&type=gas_station&key=AIzaSyAIf-vJKm6y4vhqsCFdMkuRYIOjb8Q8rxM`;
+    let objReturn = await getJSON(placeUrl)
+    var placeReturn = objReturn
+    console.log(placeReturn.results[0].place_id)
+    placeID = placeReturn.results[0].place_id
+    waypointName= `place_id=${placeID}`
+
 }
 
 function bikeID(bikeId) {
